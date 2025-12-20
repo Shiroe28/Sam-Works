@@ -33,11 +33,14 @@ const Projects = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [activeFilter, setActiveFilter] = useState('All')
 
+  // Get base path for GitHub Pages
+  const basePath = import.meta.env.BASE_URL
+
   const projects = [
     {
       title: 'Hakbang',
       description: 'Personal IT Career Guide - Mobile application with admin dashboard for comprehensive career management and AI-powered recommendations.',
-      image: '/Hakbang.png',
+      image: `${basePath}Hakbang.png`,
       category: 'Full-Stack',
       tech: ['Flutter', 'Node.js', 'MongoDB', 'React Admin', 'OpenAI API', 'JWT'],
       liveLink: '#',
@@ -46,7 +49,16 @@ const Projects = () => {
     {
       title: 'Equity',
       description: 'Business Helper - Shop Analytics Dashboard for real-time business insights and profit tracking across multiple platforms.',
-      image: '/Equity.png',
+      image: `${basePath}Equity.png`,
+      category: 'Full-Stack',
+      tech: ['Flutter', 'Supabase', 'Riverpod', 'GoRouter', 'PostgreSQL'],
+      liveLink: '#',
+      githubLink: '#',
+    },
+    {
+      title: 'REVU',
+      description: 'Study App - Modern mobile flashcard application for effective learning with deck management and progress tracking.',
+      image: `${basePath}Revu.png`,
       category: 'Full-Stack',
       tech: ['Flutter', 'Supabase', 'Riverpod', 'GoRouter', 'PostgreSQL'],
       liveLink: '#',
