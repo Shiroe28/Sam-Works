@@ -65,12 +65,6 @@ const Projects = () => {
       githubLink: '#',
     },
   ]
-      category: 'Frontend',
-      tech: ['Android Studio', 'Java', 'Material Design', 'SQLite'],
-      liveLink: '#',
-      githubLink: '#',
-    },
-  ]
 
   const filters = ['All', 'Frontend', 'Backend', 'Full-Stack']
 
