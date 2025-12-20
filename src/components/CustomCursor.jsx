@@ -48,53 +48,45 @@ const CustomCursor = () => {
 
   return (
     <>
-      {/* Main cursor dot */}
+      {/* Main cursor dot - solid, stays exactly under mouse */}
       <motion.div
-        className="fixed top-0 left-0 w-4 h-4 bg-primary rounded-full pointer-events-none z-[9999] mix-blend-screen"
-        animate={{
-          x: mousePosition.x - 8,
-          y: mousePosition.y - 8,
-          scale: isHovering ? 1.5 : 1,
+        className="fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none z-[9999]"
+        style={{ 
+          backgroundColor: '#8B5CF6',
+          x: mousePosition.x - 4,
+          y: mousePosition.y - 4,
         }}
         transition={{
           type: "spring",
-          stiffness: 500,
-          damping: 28,
-          mass: 0.5
+          stiffness: 1000,
+          damping: 30,
+          mass: 0.3
         }}
       />
 
-      {/* Cursor ring */}
+      {/* Trailing ring - larger with lag/spring effect */}
       <motion.div
-        className="fixed top-0 left-0 w-10 h-10 border-2 border-primary rounded-full pointer-events-none z-[9999] mix-blend-screen"
+        className="fixed top-0 left-0 rounded-full pointer-events-none z-[9998] border-2"
         animate={{
-          x: mousePosition.x - 20,
-          y: mousePosition.y - 20,
-          scale: isHovering ? 1.5 : 1,
+          x: mousePosition.x - (isHovering ? 30 : 16),
+          y: mousePosition.y - (isHovering ? 30 : 16),
+          width: isHovering ? '60px' : '32px',
+          height: isHovering ? '60px' : '32px',
+          borderColor: '#A78BFA',
+          backgroundColor: isHovering ? 'rgba(139, 92, 246, 0.15)' : 'transparent',
         }}
         transition={{
           type: "spring",
           stiffness: 150,
-          damping: 15,
-          mass: 0.6
-        }}
-      />
-
-      {/* Glowing trail effect */}
-      <motion.div
-        className="fixed top-0 left-0 w-20 h-20 bg-primary rounded-full pointer-events-none z-[9998] blur-xl opacity-20"
-        animate={{
-          x: mousePosition.x - 40,
-          y: mousePosition.y - 40,
-          scale: isHovering ? 1.2 : 0.8,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 80,
           damping: 20,
           mass: 0.8
         }}
       />
+    </>
+  )
+}
+
+export default CustomCursor
     </>
   )
 }

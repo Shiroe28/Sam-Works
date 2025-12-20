@@ -59,15 +59,12 @@ const Projects = () => {
       title: 'REVU',
       description: 'Study App - Modern mobile flashcard application for effective learning with deck management and progress tracking.',
       image: `${basePath}Revu.png`,
-      category: 'Full-Stack',
-      tech: ['Flutter', 'Supabase', 'Riverpod', 'GoRouter', 'PostgreSQL'],
+      category: 'Frontend',
+      tech: ['Android Studio', 'Java', 'Material Design', 'SQLite'],
       liveLink: '#',
       githubLink: '#',
     },
-    {
-      title: 'REVU',
-      description: 'Study App - Modern mobile flashcard application for effective learning with deck management and progress tracking.',
-      image: '/Revu.png',
+  ]
       category: 'Frontend',
       tech: ['Android Studio', 'Java', 'Material Design', 'SQLite'],
       liveLink: '#',
