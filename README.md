@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🚀 Modern Freelance Portfolio Website
 
 A stunning, responsive single-page portfolio website built with React, Tailwind CSS, and Framer Motion.
@@ -117,3 +118,7 @@ Contributions, issues, and feature requests are welcome!
 ---
 
 **Made with ❤️ and React**
+=======
+# Sam-Works
+My personal portfolio
+>>>>>>> 13608f032b489190ec17112e3013c77a4e6cb777
