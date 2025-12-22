@@ -71,7 +71,7 @@ const Contact = () => {
             <span className="text-secondary">Let's Work Together</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-muted max-w-2xl mx-auto px-4">
-            Have a project in mind or just want to connect? I'm open to freelance, collaboration, or full-time opportunities.
+            Have a project in mind or just want to connect? I'm available for freelance projects, partnerships, or full-time opportunities.
           </p>
         </motion.div>
 
@@ -195,7 +195,7 @@ const Contact = () => {
                 required
                 rows="5"
                 className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:border-secondary focus:outline-none focus:ring-2 focus:ring-secondary/20 transition-all text-text resize-none placeholder:text-muted"
-                placeholder="Looking for a collaboration, freelance work, or just want to say hi? Type away!"
+                placeholder="Available for collaborations and freelance opportunities. Feel free to reach out with inquiries or just to connect"
               ></textarea>
             </div>
 

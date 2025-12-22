@@ -58,7 +58,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="md:text-right"
+            className="hidden md:block md:text-right"
           >
             <h4 className="text-sm font-bold text-text mb-4 uppercase tracking-wider">Socials</h4>
             <div className="space-y-2">
