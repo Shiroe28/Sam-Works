@@ -9,7 +9,7 @@ import ValuePropsPage from './pages/ValuePropsPage'
 
 function App() {
   return (
-    <Router basename="/Sam-Works">
+    <Router>
       <CustomCursor />
       <div className="relative overflow-hidden">
         <div className="relative z-10">
