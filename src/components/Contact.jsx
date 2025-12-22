@@ -59,18 +59,18 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" className="py-16 px-8 sm:px-12 lg:px-16 bg-background" ref={ref}>
+    <section id="contact" className="py-12 md:py-16 px-4 sm:px-8 lg:px-16 bg-background" ref={ref}>
       <div className="max-w-7xl mx-auto w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
             <span className="text-secondary">Let's Work Together</span>
           </h2>
-          <p className="text-xl text-muted max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted max-w-2xl mx-auto px-4">
             Have a project in mind or just want to connect? I'm open to freelance, collaboration, or full-time opportunities.
           </p>
         </motion.div>
@@ -79,7 +79,7 @@ const Contact = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid lg:grid-cols-2 gap-12 items-center"
+          className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center"
         >
           {/* Left Side - Illustration */}
           <motion.div

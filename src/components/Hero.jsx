@@ -24,10 +24,10 @@ const Hero = () => {
   }, [currentIndex, isComplete])
 
   return (
-    <section className="relative flex-1 flex flex-col justify-center pt-20 px-8 sm:px-12 lg:px-16">
+    <section className="relative flex-1 flex flex-col justify-center pt-24 md:pt-20 px-4 sm:px-8 lg:px-16">
       {/* Glow effect */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-96 h-96 bg-primary opacity-20 rounded-full blur-[120px]"></div>
+        <div className="w-64 h-64 md:w-96 md:h-96 bg-primary opacity-20 rounded-full blur-[120px]"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto text-center">
@@ -37,7 +37,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight px-2">
             Creating{' '}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               {displayText}
@@ -52,7 +52,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xl sm:text-2xl text-muted mb-12 max-w-3xl mx-auto"
+          className="text-base sm:text-xl md:text-2xl text-muted mb-8 md:mb-12 max-w-3xl mx-auto px-4"
         >
           Full-stack developer crafting seamless web experiences with modern technologies
         </motion.p>

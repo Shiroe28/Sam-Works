@@ -118,19 +118,19 @@ const Projects = () => {
   }
 
   return (
-    <section id="projects" className="min-h-screen py-20 px-8 sm:px-12 lg:px-16 flex items-center bg-background" ref={ref}>
+    <section id="projects" className="min-h-screen py-16 md:py-20 px-4 sm:px-8 lg:px-16 flex items-center bg-background" ref={ref}>
       <div className="max-w-7xl mx-auto w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
             Featured Projects<span className="text-primary">.</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6"></div>
-          <p className="text-xl text-muted max-w-2xl mx-auto">
+          <p className="text-base sm:text-xl text-muted max-w-2xl mx-auto px-4">
             A selection of my recent work
           </p>
         </motion.div>
@@ -140,7 +140,7 @@ const Projects = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="flex flex-wrap justify-center gap-3 md:gap-4 mb-8 md:mb-12 px-2"
         >
           {filters.map((filter, index) => (
             <motion.button
@@ -151,7 +151,7 @@ const Projects = () => {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setActiveFilter(filter)}
-              className={`px-6 py-2 rounded-full font-semibold transition-all duration-200 ${
+              className={`px-4 sm:px-6 py-2 rounded-full font-semibold transition-all duration-200 text-sm sm:text-base ${
                 activeFilter === filter
                   ? 'bg-primary text-text shadow-[0_0_20px_rgba(139,92,246,0.4)]'
                   : 'glass text-muted hover:text-text hover:bg-primary/20'
@@ -167,7 +167,7 @@ const Projects = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid md:grid-cols-2 gap-8"
+          className="grid md:grid-cols-2 gap-6 md:gap-8"
         >
           {filteredProjects.map((project, index) => (
             <motion.div
@@ -180,7 +180,7 @@ const Projects = () => {
             >
               {/* Project Image */}
               <motion.div 
-                className="relative overflow-hidden h-[450px] bg-border"
+                className="relative overflow-hidden h-[300px] sm:h-[400px] md:h-[450px] bg-border"
                 whileHover="hover"
               >
                 <motion.img
@@ -198,7 +198,7 @@ const Projects = () => {
               </motion.div>
 
               {/* Project Info */}
-              <div className="p-8">
+              <div className="p-5 sm:p-6 md:p-8">
                 <motion.h3 
                   className="text-2xl font-bold mb-3"
                   whileHover={{ x: 5, color: "#8B5CF6" }}

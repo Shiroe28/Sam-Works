@@ -91,20 +91,20 @@ const About = () => {
   }
 
   return (
-    <section id="about" className="py-20 px-8 sm:px-12 lg:px-16 flex items-center bg-background" ref={ref}>
-      <div className="max-w-7xl mx-auto w-full space-y-16">
+    <section id="about" className="py-16 md:py-20 px-4 sm:px-8 lg:px-16 flex items-center bg-background" ref={ref}>
+      <div className="max-w-7xl mx-auto w-full space-y-12 md:space-y-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
             Who Am I<span className="text-primary">?</span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mb-12"></div>
+          <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mb-8 md:mb-12"></div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-12 items-start mb-16">
+        <div className="grid lg:grid-cols-3 gap-8 md:gap-12 items-start mb-12 md:mb-16">
           {/* Left: Description - Spans 2 columns */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -112,12 +112,12 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-2 space-y-6"
           >
-            <p className="text-xl text-muted leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-muted leading-relaxed">
               I'm a <span className="text-text font-semibold">Full-Stack Developer</span> passionate 
               about turning ideas into experiences. With expertise in modern web technologies, 
               I create scalable, performant applications that solve real-world problems.
             </p>
-            <p className="text-xl text-muted leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-muted leading-relaxed">
               From concept to deployment, I focus on writing clean, maintainable code while 
               delivering exceptional user experiences. Whether it's a dynamic web app or a 
               responsive landing page, I bring ideas to life with precision and creativity.
@@ -129,7 +129,7 @@ const About = () => {
             >
               <button
                 onClick={() => navigate('/projects')}
-                className="inline-block px-8 py-3 glass hover:bg-primary/20 rounded-full text-text font-semibold transition-all duration-200"
+                className="inline-block px-6 sm:px-8 py-2 sm:py-3 glass hover:bg-primary/20 rounded-full text-text font-semibold transition-all duration-200 text-sm sm:text-base"
               >
                 View My Work
               </button>
@@ -143,10 +143,10 @@ const About = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <h3 className="text-4xl font-bold mb-8">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-8">
             Tech Stack<span className="text-primary">.</span>
           </h3>
-          <p className="text-lg text-muted mb-12">A collection of technologies organized by domain</p>
+          <p className="text-base sm:text-lg text-muted mb-8 md:mb-12">A collection of technologies organized by domain</p>
           
           <div className="space-y-8">
             {techCategories.map((category, catIndex) => (

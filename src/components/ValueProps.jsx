@@ -44,19 +44,19 @@ const ValueProps = () => {
   }
 
   return (
-    <section id="value-props" className="py-16 px-8 sm:px-12 lg:px-16" ref={ref}>
+    <section id="value-props" className="py-12 md:py-16 px-4 sm:px-8 lg:px-16" ref={ref}>
       <div className="max-w-7xl mx-auto w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 px-2">
             What You Get Working With Me<span className="text-primary">.</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6"></div>
-          <p className="text-xl text-muted max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted max-w-2xl mx-auto px-4">
             More than code—real solutions that perform
           </p>
         </motion.div>
@@ -65,27 +65,27 @@ const ValueProps = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid md:grid-cols-3 gap-8"
+          className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8"
         >
           {values.map((value, index) => (
             <motion.div
               key={index}
               variants={cardVariants}
               whileHover={{ scale: 1.05, y: -10 }}
-              className="glass rounded-xl p-8 hover:bg-primary/10 transition-all duration-300 group cursor-pointer"
+              className="glass rounded-xl p-6 md:p-8 hover:bg-primary/10 transition-all duration-300 group cursor-pointer"
             >
               {/* Glow effect on hover */}
               <div className="relative">
                 <div className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300 rounded-full"></div>
-                <div className="relative text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="relative text-primary mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
                   {value.icon}
                 </div>
               </div>
 
-              <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
+              <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 group-hover:text-primary transition-colors duration-300">
                 {value.title}
               </h3>
-              <p className="text-muted leading-relaxed">
+              <p className="text-sm md:text-base text-muted leading-relaxed">
                 {value.description}
               </p>
             </motion.div>

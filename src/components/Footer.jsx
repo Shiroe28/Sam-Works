@@ -13,8 +13,8 @@ const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="py-12 px-8 sm:px-12 lg:px-16 border-t border-border">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+    <footer className="py-8 md:py-12 px-4 sm:px-8 lg:px-16 border-t border-border">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-8">
         {/* Left - Logo and Email */}
         <motion.div
             initial={{ opacity: 0, y: 20 }}
