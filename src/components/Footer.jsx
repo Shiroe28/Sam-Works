@@ -7,7 +7,7 @@ const Footer = () => {
     { icon: <Github size={24} />, href: 'https://github.com/Shiroe28', label: 'GitHub' },
     { icon: <Linkedin size={24} />, href: 'https://www.linkedin.com/in/sam-richmond-go-25b0bb352', label: 'LinkedIn' },
     { icon: <Instagram size={24} />, href: 'https://www.facebook.com/githubshiroe28', label: 'Facebook' },
-    { icon: <Mail size={24} />, href: 'mailto:markkevinromero.works@gmail.com', label: 'Email' },
+    { icon: <Mail size={24} />, href: 'sam.richmond.go@gmail.com', label: 'Email' },
   ]
 
   const currentYear = new Date().getFullYear()

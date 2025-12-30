@@ -38,6 +38,15 @@ const Projects = () => {
 
   const projects = [
     {
+      title: 'Aura',
+      description: 'New Year Resolution App - A comprehensive personal development app featuring todo lists, goal tracking, morning reflections, calendar planning, and daily journaling to help you achieve your new year resolutions.',
+      image: `${basePath}Aura.png`,
+      category: 'Full-Stack',
+      tech: ['Flutter', 'Node.js', 'Supabase'],
+      liveLink: '#',
+      githubLink: '#',
+    },
+    {
       title: 'Hakbang',
       description: 'Personal IT Career Guide - Mobile application with admin dashboard for comprehensive career management and AI-powered recommendations.',
       image: `${basePath}Hakbang.png`,
