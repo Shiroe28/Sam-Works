@@ -13,6 +13,10 @@ import { BiPackage } from 'react-icons/bi'
 // Tech stack icon mapping
 const techIcons = {
   'Flutter': <SiFlutter className="w-5 h-5" style={{ color: '#02569B' }} />,
+  'Dart': <SiDart className="w-5 h-5" style={{ color: '#0175C2' }} />,
+  'Firebase': <SiFirebase className="w-5 h-5" style={{ color: '#FFCA28' }} />,
+  'Provider': <BiPackage className="w-5 h-5" style={{ color: '#8B5CF6' }} />,
+  'Material Design 3': <TbPalette className="w-5 h-5" style={{ color: '#757575' }} />,
   'Node.js': <FaNodeJs className="w-5 h-5" style={{ color: '#339933' }} />,
   'MongoDB': <SiMongodb className="w-5 h-5" style={{ color: '#47A248' }} />,
   'React Admin': <SiReact className="w-5 h-5" style={{ color: '#61DAFB' }} />,
@@ -26,6 +30,8 @@ const techIcons = {
   'Java': <FaJava className="w-5 h-5" style={{ color: '#007396' }} />,
   'Material Design': <TbPalette className="w-5 h-5" style={{ color: '#757575' }} />,
   'SQLite': <SiSqlite className="w-5 h-5" style={{ color: '#003B57' }} />,
+  'VS Code': <TbBrandVscode className="w-5 h-5" style={{ color: '#007ACC' }} />,
+  'Git': <FaGitAlt className="w-5 h-5" style={{ color: '#F05032' }} />,
 }
 
 const Projects = () => {
@@ -42,7 +48,7 @@ const Projects = () => {
       description: 'New Year Resolution App - A comprehensive personal development app featuring todo lists, goal tracking, morning reflections, calendar planning, and daily journaling to help you achieve your new year resolutions.',
       image: `${basePath}Aura.png`,
       category: 'Full-Stack',
-      tech: ['Flutter', 'Node.js', 'Supabase'],
+      tech: ['Flutter', 'Dart', 'Supabase', 'Provider', 'Material Design 3', 'VS Code', 'Git'],
       liveLink: '#',
       githubLink: '#',
     },

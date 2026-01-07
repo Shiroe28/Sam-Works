@@ -6,9 +6,10 @@ import { useNavigate } from 'react-router-dom'
 import { 
   SiHtml5, SiCss3, SiJavascript, SiExpress, SiReact,
   SiDart, SiFlutter, SiAndroid,
-  SiFirebase, SiMongodb, SiPostgresql, SiSupabase, SiSqlite, SiOpenai, SiPostman
+  SiFirebase, SiMongodb, SiPostgresql, SiSupabase, SiSqlite, SiOpenai, SiPostman,
+  SiPhp, SiApache, SiMysql, SiXampp
 } from 'react-icons/si'
-import { FaNodeJs, FaJava, FaGitAlt, FaGithub, FaKey, FaServer, FaCode } from 'react-icons/fa'
+import { FaNodeJs, FaJava, FaGitAlt, FaGithub, FaKey, FaServer, FaCode, FaDatabase } from 'react-icons/fa'
 import { TbRouter, TbBrandCSharp, TbBrandVscode, TbPalette, TbPackage } from 'react-icons/tb'
 import { BiPackage } from 'react-icons/bi'
 
@@ -46,8 +47,19 @@ const About = () => {
       ]
     },
     {
-      name: 'Backend / APIs',
+      name: 'Backend Technologies',
       color: 'bg-purple-500',
+      techs: [
+        { name: 'PHP', Icon: SiPhp, color: '#777BB4' },
+        { name: 'Apache', Icon: SiApache, color: '#D22128' },
+        { name: 'MySQL', Icon: SiMysql, color: '#4479A1' },
+        { name: 'Node.js', Icon: FaNodeJs, color: '#339933' },
+        { name: 'Express.js', Icon: SiExpress, color: '#000000' },
+      ]
+    },
+    {
+      name: 'Database & APIs',
+      color: 'bg-indigo-500',
       techs: [
         { name: 'Firebase', Icon: SiFirebase, color: '#FFCA28' },
         { name: 'MongoDB', Icon: SiMongodb, color: '#47A248' },
@@ -59,10 +71,11 @@ const About = () => {
       ]
     },
     {
-      name: 'Tools / General Development',
+      name: 'Tools & Development Environment',
       color: 'bg-orange-500',
       techs: [
         { name: 'VS Code', Icon: TbBrandVscode, color: '#007ACC' },
+        { name: 'XAMPP', Icon: SiXampp, color: '#FB7A24' },
         { name: 'Git', Icon: FaGitAlt, color: '#F05032' },
         { name: 'Github', Icon: FaGithub, color: '#181717' },
         { name: 'JWT', Icon: FaKey, color: '#000000' },
@@ -105,11 +118,27 @@ const About = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-8 md:gap-12 items-start mb-12 md:mb-16">
-          {/* Left: Description - Spans 2 columns */}
+          {/* Profile Picture */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex justify-center lg:justify-start"
+          >
+            <div className="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64">
+              <img
+                src="/sam.jpg"
+                alt="Profile"
+                className="w-full h-full rounded-full object-cover border-4 border-primary/30 shadow-[0_0_30px_rgba(139,92,246,0.3)] hover:shadow-[0_0_40px_rgba(139,92,246,0.5)] transition-all duration-300"
+              />
+            </div>
+          </motion.div>
+
+          {/* Right: Description - Spans 2 columns */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
             className="lg:col-span-2 space-y-6"
           >
             <p className="text-base sm:text-lg md:text-xl text-muted leading-relaxed">
