@@ -4,9 +4,9 @@ import { Code2, Users, CheckCircle } from 'lucide-react'
 import { 
   SiReact, SiNodedotjs, SiExpress, SiMongodb, SiPostgresql, SiTailwindcss,
   SiVite, SiEslint, SiFlutter, SiDart, SiFirebase, SiSupabase, SiJavascript,
-  SiJava, SiAndroid, SiSqlite, SiReactrouter, SiJsonwebtokens
+  SiAndroid, SiSqlite, SiReactrouter, SiJsonwebtokens
 } from 'react-icons/si'
-import { FaCode, FaServer, FaDatabase, FaTools } from 'react-icons/fa'
+import { FaCode, FaServer, FaDatabase, FaTools, FaJava } from 'react-icons/fa'
 import { TbChartBar, TbForms, TbBrandVscode } from 'react-icons/tb'
 
 const ValueProps = () => {
@@ -54,7 +54,7 @@ const ValueProps = () => {
     ],
     mobile: [
       { name: 'Android Studio', icon: <SiAndroid className="w-6 h-6" style={{ color: '#3DDC84' }} /> },
-      { name: 'Java', icon: <SiJava className="w-6 h-6" style={{ color: '#007396' }} /> },
+      { name: 'Java', icon: <FaJava className="w-6 h-6" style={{ color: '#007396' }} /> },
       { name: 'SQLite', icon: <SiSqlite className="w-6 h-6" style={{ color: '#003B57' }} /> },
     ],
     tools: [
