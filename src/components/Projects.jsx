@@ -93,7 +93,7 @@ const Projects = () => {
     {
       title: 'PersoFit',
       description: 'Personalized Gym Buddy - Full-stack fitness tracking application with user authentication, workout plans, and progress analytics. Features include JWT authentication, data visualization with charts, and comprehensive body metrics tracking.',
-      image: `${basePath}PersoFit.png`,
+      image: `${basePath}Persofit.png`,
       category: 'Full-Stack',
       tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Mongoose', 'Vite', 'Tailwind CSS', 'React Query', 'Recharts'],
       liveLink: '#',
