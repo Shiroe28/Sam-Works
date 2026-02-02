@@ -4,10 +4,11 @@ import { ExternalLink, Github } from 'lucide-react'
 import { 
   SiHtml5, SiCss3, SiJavascript, SiExpress, SiReact,
   SiDart, SiFlutter, SiAndroid,
-  SiFirebase, SiMongodb, SiPostgresql, SiSupabase, SiSqlite, SiOpenai, SiPostman
+  SiFirebase, SiMongodb, SiPostgresql, SiSupabase, SiSqlite, SiOpenai, SiPostman,
+  SiTailwindcss, SiVite, SiEslint, SiJsonwebtokens, SiReactrouter
 } from 'react-icons/si'
 import { FaNodeJs, FaJava, FaGitAlt, FaGithub, FaKey, FaServer, FaCode } from 'react-icons/fa'
-import { TbRouter, TbBrandCSharp, TbBrandVscode, TbPalette } from 'react-icons/tb'
+import { TbRouter, TbBrandCSharp, TbBrandVscode, TbPalette, TbChartBar } from 'react-icons/tb'
 import { BiPackage } from 'react-icons/bi'
 
 // Tech stack icon mapping
@@ -32,6 +33,16 @@ const techIcons = {
   'SQLite': <SiSqlite className="w-5 h-5" style={{ color: '#003B57' }} />,
   'VS Code': <TbBrandVscode className="w-5 h-5" style={{ color: '#007ACC' }} />,
   'Git': <FaGitAlt className="w-5 h-5" style={{ color: '#F05032' }} />,
+  'Express.js': <SiExpress className="w-5 h-5" style={{ color: '#000000' }} />,
+  'Mongoose': <SiMongodb className="w-5 h-5" style={{ color: '#880000' }} />,
+  'React': <SiReact className="w-5 h-5" style={{ color: '#61DAFB' }} />,
+  'Vite': <SiVite className="w-5 h-5" style={{ color: '#646CFF' }} />,
+  'React Router': <SiReactrouter className="w-5 h-5" style={{ color: '#CA4245' }} />,
+  'Tailwind CSS': <SiTailwindcss className="w-5 h-5" style={{ color: '#06B6D4' }} />,
+  'React Query': <SiReact className="w-5 h-5" style={{ color: '#FF4154' }} />,
+  'Axios': <FaServer className="w-5 h-5" style={{ color: '#5A29E4' }} />,
+  'Recharts': <TbChartBar className="w-5 h-5" style={{ color: '#8884d8' }} />,
+  'ESLint': <SiEslint className="w-5 h-5" style={{ color: '#4B32C3' }} />,
 }
 
 const Projects = () => {
@@ -76,6 +87,15 @@ const Projects = () => {
       image: `${basePath}Revu.png`,
       category: 'Frontend',
       tech: ['Android Studio', 'Java', 'Material Design', 'SQLite'],
+      liveLink: '#',
+      githubLink: '#',
+    },
+    {
+      title: 'PersoFit',
+      description: 'Personalized Gym Buddy - Full-stack fitness tracking application with user authentication, workout plans, and progress analytics. Features include JWT authentication, data visualization with charts, and comprehensive body metrics tracking.',
+      image: `${basePath}PersoFit.png`,
+      category: 'Full-Stack',
+      tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Mongoose', 'Vite', 'Tailwind CSS', 'React Query', 'Recharts'],
       liveLink: '#',
       githubLink: '#',
     },
