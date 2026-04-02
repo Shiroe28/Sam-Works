@@ -4,10 +4,11 @@ import { Code2, Users, CheckCircle } from 'lucide-react'
 import { 
   SiReact, SiNodedotjs, SiExpress, SiMongodb, SiPostgresql, SiTailwindcss,
   SiVite, SiEslint, SiFlutter, SiDart, SiFirebase, SiSupabase, SiJavascript,
-  SiAndroid, SiSqlite, SiReactrouter, SiJsonwebtokens
+  SiAndroid, SiSqlite, SiReactrouter, SiJsonwebtokens,
+  SiTypescript, SiNextdotjs, SiExpo, SiVercel, SiOpenstreetmap, SiPostman
 } from 'react-icons/si'
-import { FaCode, FaServer, FaDatabase, FaTools, FaJava } from 'react-icons/fa'
-import { TbChartBar, TbForms, TbBrandVscode } from 'react-icons/tb'
+import { FaCode, FaServer, FaDatabase, FaTools, FaJava, FaGithub, FaCreditCard, FaEnvelope, FaRobot, FaRoute, FaEye, FaGitAlt } from 'react-icons/fa'
+import { TbChartBar, TbForms, TbBrandVscode, TbRouter } from 'react-icons/tb'
 
 const ValueProps = () => {
   const ref = useRef(null)
@@ -41,26 +42,43 @@ const ValueProps = () => {
       { name: 'JWT', icon: <SiJsonwebtokens className="w-6 h-6" style={{ color: '#000000' }} /> },
       { name: 'Firebase', icon: <SiFirebase className="w-6 h-6" style={{ color: '#FFCA28' }} /> },
       { name: 'Supabase', icon: <SiSupabase className="w-6 h-6" style={{ color: '#3ECF8E' }} /> },
+      { name: 'Venice AI API', icon: <FaRobot className="w-6 h-6" style={{ color: '#7C3AED' }} /> },
+      { name: 'OCR.Space API', icon: <FaEye className="w-6 h-6" style={{ color: '#00A3E0' }} /> },
+      { name: 'Paymongo', icon: <FaCreditCard className="w-6 h-6" style={{ color: '#00B4D8' }} /> },
+      { name: 'SendGrid', icon: <FaEnvelope className="w-6 h-6" style={{ color: '#1A82E2' }} /> },
+      { name: 'OpenStreetMap', icon: <SiOpenstreetmap className="w-6 h-6" style={{ color: '#7EBC6F' }} /> },
+      { name: 'OSRM API', icon: <FaRoute className="w-6 h-6" style={{ color: '#4A90D9' }} /> },
     ],
     frontend: [
       { name: 'React', icon: <SiReact className="w-6 h-6" style={{ color: '#61DAFB' }} /> },
+      { name: 'Next.js', icon: <SiNextdotjs className="w-6 h-6" style={{ color: '#000000' }} /> },
+      { name: 'TypeScript', icon: <SiTypescript className="w-6 h-6" style={{ color: '#3178C6' }} /> },
       { name: 'Flutter', icon: <SiFlutter className="w-6 h-6" style={{ color: '#02569B' }} /> },
       { name: 'Dart', icon: <SiDart className="w-6 h-6" style={{ color: '#0175C2' }} /> },
       { name: 'Tailwind CSS', icon: <SiTailwindcss className="w-6 h-6" style={{ color: '#06B6D4' }} /> },
+      { name: 'shadcn/ui', icon: <FaCode className="w-6 h-6" style={{ color: '#000000' }} /> },
       { name: 'Vite', icon: <SiVite className="w-6 h-6" style={{ color: '#646CFF' }} /> },
       { name: 'React Router', icon: <SiReactrouter className="w-6 h-6" style={{ color: '#CA4245' }} /> },
       { name: 'React Query', icon: <SiReact className="w-6 h-6" style={{ color: '#FF4154' }} /> },
       { name: 'Recharts', icon: <TbChartBar className="w-6 h-6" style={{ color: '#8884d8' }} /> },
     ],
     mobile: [
+      { name: 'React Native', icon: <SiReact className="w-6 h-6" style={{ color: '#61DAFB' }} /> },
+      { name: 'Expo', icon: <SiExpo className="w-6 h-6" style={{ color: '#000020' }} /> },
       { name: 'Android Studio', icon: <SiAndroid className="w-6 h-6" style={{ color: '#3DDC84' }} /> },
       { name: 'Java', icon: <FaJava className="w-6 h-6" style={{ color: '#007396' }} /> },
       { name: 'SQLite', icon: <SiSqlite className="w-6 h-6" style={{ color: '#003B57' }} /> },
+      { name: 'NativeWind', icon: <SiTailwindcss className="w-6 h-6" style={{ color: '#06B6D4' }} /> },
+      { name: 'React Navigation', icon: <TbRouter className="w-6 h-6" style={{ color: '#6B52AE' }} /> },
     ],
     tools: [
-      { name: 'Git', icon: <FaCode className="w-6 h-6" style={{ color: '#F05032' }} /> },
+      { name: 'Git', icon: <FaGitAlt className="w-6 h-6" style={{ color: '#F05032' }} /> },
+      { name: 'GitHub', icon: <FaGithub className="w-6 h-6" style={{ color: '#181717' }} /> },
       { name: 'VS Code', icon: <TbBrandVscode className="w-6 h-6" style={{ color: '#007ACC' }} /> },
+      { name: 'Vercel', icon: <SiVercel className="w-6 h-6" style={{ color: '#000000' }} /> },
       { name: 'ESLint', icon: <SiEslint className="w-6 h-6" style={{ color: '#4B32C3' }} /> },
+      { name: 'EAS Build', icon: <SiExpo className="w-6 h-6" style={{ color: '#000020' }} /> },
+      { name: 'Postman', icon: <SiPostman className="w-6 h-6" style={{ color: '#FF6C37' }} /> },
     ],
   }
 

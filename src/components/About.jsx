@@ -7,9 +7,10 @@ import {
   SiHtml5, SiCss3, SiJavascript, SiExpress, SiReact,
   SiDart, SiFlutter, SiAndroid,
   SiFirebase, SiMongodb, SiPostgresql, SiSupabase, SiSqlite, SiOpenai, SiPostman,
-  SiPhp, SiApache, SiMysql, SiXampp
+  SiPhp, SiApache, SiMysql, SiXampp,
+  SiTypescript, SiNextdotjs, SiTailwindcss, SiVercel, SiExpo, SiEslint, SiVite, SiOpenstreetmap
 } from 'react-icons/si'
-import { FaNodeJs, FaJava, FaGitAlt, FaGithub, FaKey, FaServer, FaCode, FaDatabase } from 'react-icons/fa'
+import { FaNodeJs, FaJava, FaGitAlt, FaGithub, FaKey, FaServer, FaCode, FaDatabase, FaMobileAlt, FaEnvelope, FaCreditCard, FaRobot, FaRoute, FaEye } from 'react-icons/fa'
 import { TbRouter, TbBrandCSharp, TbBrandVscode, TbPalette, TbPackage } from 'react-icons/tb'
 import { BiPackage } from 'react-icons/bi'
 
@@ -26,6 +27,12 @@ const About = () => {
         { name: 'HTML5', Icon: SiHtml5, color: '#E34F26' },
         { name: 'CSS3', Icon: SiCss3, color: '#1572B6' },
         { name: 'JavaScript', Icon: SiJavascript, color: '#F7DF1E' },
+        { name: 'TypeScript', Icon: SiTypescript, color: '#3178C6' },
+        { name: 'React', Icon: SiReact, color: '#61DAFB' },
+        { name: 'Next.js', Icon: SiNextdotjs, color: '#000000' },
+        { name: 'Tailwind CSS', Icon: SiTailwindcss, color: '#06B6D4' },
+        { name: 'shadcn/ui', Icon: FaCode, color: '#000000' },
+        { name: 'Vite', Icon: SiVite, color: '#646CFF' },
         { name: 'Node.js', Icon: FaNodeJs, color: '#339933' },
         { name: 'Express.js', Icon: SiExpress, color: '#000000' },
         { name: 'React Admin', Icon: SiReact, color: '#61DAFB' },
@@ -36,11 +43,16 @@ const About = () => {
       name: 'Mobile Development',
       color: 'bg-green-500',
       techs: [
+        { name: 'React Native', Icon: SiReact, color: '#61DAFB' },
+        { name: 'Expo', Icon: SiExpo, color: '#000020' },
         { name: 'Java', Icon: FaJava, color: '#007396' },
         { name: 'C#', Icon: TbBrandCSharp, color: '#239120' },
         { name: 'Dart', Icon: SiDart, color: '#0175C2' },
         { name: 'Flutter', Icon: SiFlutter, color: '#02569B' },
         { name: 'Android Studio', Icon: SiAndroid, color: '#3DDC84' },
+        { name: 'NativeWind', Icon: SiTailwindcss, color: '#06B6D4' },
+        { name: 'React Navigation', Icon: TbRouter, color: '#6B52AE' },
+        { name: 'React Native Reanimated', Icon: FaMobileAlt, color: '#7C3AED' },
         { name: 'Material Design', Icon: TbPalette, color: '#757575' },
         { name: 'Riverpod', Icon: BiPackage, color: '#8B5CF6' },
         { name: 'GoRouter', Icon: TbRouter, color: '#00D9FF' },
@@ -67,6 +79,12 @@ const About = () => {
         { name: 'Supabase', Icon: SiSupabase, color: '#3ECF8E' },
         { name: 'SQLite', Icon: SiSqlite, color: '#003B57' },
         { name: 'OpenAI API', Icon: SiOpenai, color: '#412991' },
+        { name: 'Venice AI API', Icon: FaRobot, color: '#7C3AED' },
+        { name: 'OCR.Space API', Icon: FaEye, color: '#00A3E0' },
+        { name: 'Paymongo', Icon: FaCreditCard, color: '#00B4D8' },
+        { name: 'SendGrid', Icon: FaEnvelope, color: '#1A82E2' },
+        { name: 'OpenStreetMap', Icon: SiOpenstreetmap, color: '#7EBC6F' },
+        { name: 'OSRM API', Icon: FaRoute, color: '#4A90D9' },
         { name: 'Postman', Icon: SiPostman, color: '#FF6C37' },
       ]
     },
@@ -78,6 +96,9 @@ const About = () => {
         { name: 'XAMPP', Icon: SiXampp, color: '#FB7A24' },
         { name: 'Git', Icon: FaGitAlt, color: '#F05032' },
         { name: 'Github', Icon: FaGithub, color: '#181717' },
+        { name: 'Vercel', Icon: SiVercel, color: '#000000' },
+        { name: 'EAS Build', Icon: SiExpo, color: '#000020' },
+        { name: 'ESLint', Icon: SiEslint, color: '#4B32C3' },
         { name: 'JWT', Icon: FaKey, color: '#000000' },
         { name: 'C++', Icon: FaCode, color: '#00599C' },
       ]
