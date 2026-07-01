@@ -8,26 +8,26 @@ export default {
     extend: {
       colors: {
         background: '#000000',
-        primary: '#8B5CF6',
-        secondary: '#A78BFA',
-        text: '#F5F5F5',
-        muted: '#B3B3C6',
-        border: '#1E1E1E',
+        card: '#111111',
+        'card-hover': '#1a1a1a',
+        primary: '#f9a8d4',
+        secondary: '#fbcfe8',
+        accent: '#f472b6',
+        text: '#fafafa',
+        muted: '#a3a3a3',
+        border: '#262626',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       animation: {
-        'marquee': 'marquee 25s linear infinite',
+        marquee: 'marquee 35s linear infinite',
       },
       keyframes: {
         marquee: {
-          '0%': { transform: 'translateX(0%)' },
+          '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
         },
-      },
-      backgroundImage: {
-        'grid-pattern': 'linear-gradient(to right, #1C1C2A 1px, transparent 1px), linear-gradient(to bottom, #1C1C2A 1px, transparent 1px)',
       },
     },
   },

@@ -1,27 +1,20 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import CustomCursor from './components/CustomCursor'
-import Landing from './pages/Landing'
-import AboutPage from './pages/AboutPage'
-import ProjectsPage from './pages/ProjectsPage'
-import ValuePropsPage from './pages/ValuePropsPage'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import Home from './pages/Home'
+
+const basename = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '') || undefined
 
 function App() {
   return (
-    <Router>
-      <CustomCursor />
-      <div className="relative overflow-hidden">
-        <div className="relative z-10">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/value" element={<ValuePropsPage />} />
-          </Routes>
-        </div>
-      </div>
+    <Router basename={basename}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<Home />} />
+        <Route path="/projects" element={<Home />} />
+        <Route path="/value" element={<Home />} />
+        <Route path="/contact" element={<Home />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
     </Router>
   )
 }
