@@ -17,7 +17,7 @@
   }
 
   .section-panel {
-    @apply bg-card border border-border rounded-2xl p-4 sm:p-5 h-full;
+    @apply bg-card border border-border rounded-2xl p-4 sm:p-5 h-full overflow-hidden;
   }
 
   .section-title {
@@ -26,6 +26,35 @@
 
   .section-underline {
     @apply w-7 h-0.5 bg-primary rounded-full mt-1.5 mb-3;
+  }
+
+  .page-scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overscroll-behavior: contain;
+    height: 100%;
+    max-height: 100%;
+  }
+
+  .page-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll-indicator {
+    @apply absolute right-1 top-0 bottom-0 w-5 flex items-center justify-center pointer-events-none;
+  }
+
+  .scroll-indicator-track {
+    @apply relative w-1.5 h-full rounded-full bg-border/60;
+  }
+
+  .scroll-indicator-thumb {
+    @apply absolute left-0 w-1.5 rounded-full bg-primary;
+    min-height: 36px;
+    transition: top 0.15s ease-out, height 0.15s ease-out;
+    box-shadow: 0 0 10px rgba(249, 168, 212, 0.5);
   }
 
   .icon-box {
