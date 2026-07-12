@@ -43,18 +43,27 @@
   }
 
   .scroll-indicator {
-    @apply absolute right-1 top-0 bottom-0 w-5 flex items-center justify-center pointer-events-none;
+    @apply absolute right-1 top-0 bottom-0 w-6 flex flex-col items-center gap-1 py-1 pointer-events-auto z-10;
+  }
+
+  .scroll-indicator-btn {
+    @apply w-5 h-5 flex items-center justify-center rounded text-muted hover:text-primary hover:bg-card-hover border border-transparent hover:border-primary/30 transition-colors shrink-0;
   }
 
   .scroll-indicator-track {
-    @apply relative w-1.5 h-full rounded-full bg-border/60;
+    @apply relative w-1.5 flex-1 min-h-0 rounded-full bg-border/60 cursor-pointer;
   }
 
   .scroll-indicator-thumb {
-    @apply absolute left-0 w-1.5 rounded-full bg-primary;
-    min-height: 36px;
+    @apply absolute left-0 w-1.5 rounded-full bg-primary cursor-grab;
+    min-height: 24px;
     transition: top 0.15s ease-out, height 0.15s ease-out;
     box-shadow: 0 0 10px rgba(249, 168, 212, 0.5);
+  }
+
+  .scroll-indicator-thumb-dragging {
+    transition: none;
+    cursor: grabbing;
   }
 
   .icon-box {

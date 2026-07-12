@@ -28,11 +28,14 @@ const routeToSection = {
 }
 
 const SCROLL_CHARGE = 0.09
+const SCROLL_STEP = 80
 const TRANSITION_MS = 650
 
 const Home = () => {
   const [activeSection, setActiveSection] = useState('about')
   const [scrollProgress, setScrollProgress] = useState(0)
+  const [thumbRatio, setThumbRatio] = useState(0.2)
+  const [isScrollable, setIsScrollable] = useState(false)
   const [panelHeight, setPanelHeight] = useState(undefined)
   const contentRef = useRef(null)
   const sidebarRef = useRef(null)
@@ -60,11 +63,15 @@ const Home = () => {
     const content = contentRef.current
     if (!content) return
 
-    if (isContentScrollable(content)) {
+    const scrollable = isContentScrollable(content)
+    setIsScrollable(scrollable)
+
+    if (scrollable) {
       const maxScroll = content.scrollHeight - content.clientHeight
       const p = maxScroll > 0 ? content.scrollTop / maxScroll : 0
       progressRef.current = p
       setScrollProgress(p)
+      setThumbRatio(content.clientHeight / content.scrollHeight)
     }
   }, [isContentScrollable])
 
@@ -85,6 +92,7 @@ const Home = () => {
           content.scrollTop = 0
           resetProgress()
         }
+        syncProgressFromScroll()
       } else {
         resetProgress()
       }
@@ -93,11 +101,61 @@ const Home = () => {
     setTimeout(() => {
       isTransitioning.current = false
     }, TRANSITION_MS)
-  }, [resetProgress])
+  }, [resetProgress, syncProgressFromScroll])
 
   const navigateToSection = useCallback((id) => {
     goToSection(id)
   }, [goToSection])
+
+  const applyProgress = useCallback((p) => {
+    const content = contentRef.current
+    if (!content) return
+
+    const clamped = Math.max(0, Math.min(1, p))
+
+    if (isContentScrollable(content)) {
+      const maxScroll = content.scrollHeight - content.clientHeight
+      content.scrollTop = clamped * maxScroll
+      progressRef.current = clamped
+      setScrollProgress(clamped)
+    } else {
+      progressRef.current = clamped
+      setScrollProgress(clamped)
+    }
+  }, [isContentScrollable])
+
+  const stepScroll = useCallback((direction) => {
+    if (isTransitioning.current) return
+
+    const content = contentRef.current
+    if (!content) return
+
+    const currentIndex = sections.findIndex((s) => s.id === activeSection)
+    const scrollable = isContentScrollable(content)
+    const maxScroll = content.scrollHeight - content.clientHeight
+    const atTop = content.scrollTop <= 1
+    const atBottom = content.scrollTop >= maxScroll - 1
+
+    if (direction === 'down') {
+      if (scrollable && !atBottom) {
+        content.scrollTop = Math.min(maxScroll, content.scrollTop + SCROLL_STEP)
+        syncProgressFromScroll()
+        return
+      }
+      if (currentIndex < sections.length - 1) {
+        goToSection(sections[currentIndex + 1].id)
+      }
+    } else {
+      if (scrollable && !atTop) {
+        content.scrollTop = Math.max(0, content.scrollTop - SCROLL_STEP)
+        syncProgressFromScroll()
+        return
+      }
+      if (currentIndex > 0) {
+        goToSection(sections[currentIndex - 1].id, true)
+      }
+    }
+  }, [activeSection, goToSection, isContentScrollable, syncProgressFromScroll])
 
   useEffect(() => {
     const target = routeToSection[location.pathname]
@@ -226,10 +284,17 @@ const Home = () => {
             <SectionNav activeSection={activeSection} onNavigate={navigateToSection} />
 
             <div className="relative flex-1 min-h-0 overflow-hidden">
-              <div ref={contentRef} className="page-scroll page-content h-full pr-4">
+              <div ref={contentRef} className="page-scroll page-content h-full pr-8">
                 <ActiveComponent />
               </div>
-              <ScrollIndicator progress={scrollProgress} />
+              <ScrollIndicator
+                progress={scrollProgress}
+                scrollable={isScrollable}
+                thumbRatio={thumbRatio}
+                onSeek={applyProgress}
+                onStepUp={() => stepScroll('up')}
+                onStepDown={() => stepScroll('down')}
+              />
             </div>
           </div>
         </main>
