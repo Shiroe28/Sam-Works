@@ -1,306 +1,124 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import Sidebar from '../components/Sidebar'
-import SectionNav, { sections } from '../components/SectionNav'
-import ScrollIndicator from '../components/ScrollIndicator'
-import AboutSection from '../components/AboutSection'
-import SkillsSection from '../components/SkillsSection'
-import ProjectsSection from '../components/ProjectsSection'
-import AchievementsSection from '../components/AchievementsSection'
-import GallerySection from '../components/GallerySection'
-import ContactSection from '../components/ContactSection'
+import React, { useRef, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ArrowLeft, ArrowRight, ArrowUpRight, Github, Linkedin, Mail, MapPin, Phone, X } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import lastCredImage from '../../LastCred.png'
 
-const sectionComponents = {
-  about: AboutSection,
-  skills: SkillsSection,
-  projects: ProjectsSection,
-  achievements: AchievementsSection,
-  gallery: GallerySection,
-  contact: ContactSection,
-}
+const basePath = import.meta.env.BASE_URL
 
-const routeToSection = {
-  '/': 'about',
-  '/about': 'about',
-  '/projects': 'projects',
-  '/value': 'contact',
-  '/contact': 'contact',
-}
+const projects = [
+  { title: 'Aura', tag: 'PERSONAL GROWTH', description: 'Goals, tasks, and daily journaling in one focused mobile space.', detail: 'Aura helps people keep personal goals, task lists, and daily reflections in one calm, useful place.', stack: 'Flutter · Firebase', image: 'Aura.png' },
+  { title: 'Hakbang', tag: 'CAREER GUIDE', description: 'An IT career guide with administration tools and AI recommendations.', detail: 'A guided career companion for IT students, combining curated paths, an admin dashboard, and tailored AI recommendations.', stack: 'Flutter · AI · Firebase', image: 'Hakbang.png' },
+  { title: 'Equity', tag: 'ANALYTICS', description: 'Live business insights and profit tracking for shop owners.', detail: 'Equity brings essential business signals together so shop owners can understand performance and profit at a glance.', stack: 'Flutter · Analytics', image: 'Equity.png' },
+  { title: 'REVU', tag: 'EDUCATION', description: 'A flashcard experience with deck management for better learning.', detail: 'A focused study tool designed around flexible flashcard decks and a friction-free learning routine.', stack: 'Flutter · Mobile', image: 'Revu.png' },
+  { title: 'PersoFit', tag: 'FITNESS', description: 'Workout plans and progress analytics in a full-stack web app.', detail: 'PersoFit pairs structured workout plans with progress analytics, giving users a clearer view of their fitness journey.', stack: 'React · Node.js', image: 'Persofit.png' },
+  { title: 'LastCred', tag: 'GAME EXPERIENCE', description: 'A neon isometric arcade survival game where every second is a decision.', detail: 'LastCred is a fast-paced arena survival concept built around responsive combat feedback, wave escalation, and a vivid neon atmosphere.', stack: 'Three.js · JavaScript', image: lastCredImage },
+]
 
-const SCROLL_CHARGE = 0.09
-const SCROLL_STEP = 80
-const TRANSITION_MS = 650
+const credentials = [
+  ['Introduction to IoT & Digital Transformation', 'Cisco Networking Academy · 2026', 'certificates/introduction-to-iot.pdf'],
+  ['Introduction to AI Agents', 'DataCamp · 2026', 'certificates/certificate.pdf'],
+  ['Introduction to GitHub Concepts', 'DataCamp · 2026', 'certificates/certificate-1.pdf'],
+  ['Artificial Intelligence', 'Certified Professional · 2026', 'certificates/cert-72091353645.pdf'],
+  ['PowerPoint 2019 Associate', 'Microsoft Office Specialist · 2024', 'certificates/cert-69991327421.pdf'],
+]
 
-const Home = () => {
-  const [activeSection, setActiveSection] = useState('about')
-  const [scrollProgress, setScrollProgress] = useState(0)
-  const [thumbRatio, setThumbRatio] = useState(0.2)
-  const [isScrollable, setIsScrollable] = useState(false)
-  const [panelHeight, setPanelHeight] = useState(undefined)
-  const contentRef = useRef(null)
-  const sidebarRef = useRef(null)
-  const progressRef = useRef(0)
-  const isTransitioning = useRef(false)
-  const location = useLocation()
-  const navigate = useNavigate()
+const skills = ['React', 'JavaScript', 'TypeScript', 'Node.js', 'Express', 'Flutter', 'Dart', 'PHP', 'MySQL', 'MongoDB', 'PostgreSQL', 'Firebase', 'Supabase', 'Git', 'OpenAI API']
 
-  const syncPanelHeight = useCallback(() => {
-    if (sidebarRef.current) {
-      setPanelHeight(sidebarRef.current.offsetHeight)
-    }
-  }, [])
+const Marker = ({ children }) => <p className="dossier-marker">{children}</p>
 
-  const resetProgress = useCallback(() => {
-    progressRef.current = 0
-    setScrollProgress(0)
-  }, [])
+const ProjectShowcase = () => {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [isOpen, setIsOpen] = useState(false)
+  const [direction, setDirection] = useState(1)
+  const carouselRef = useRef(null)
+  const projectCardRefs = useRef([])
+  const activeProject = projects[activeIndex]
 
-  const isContentScrollable = useCallback((content) => {
-    return content.scrollHeight > content.clientHeight + 2
-  }, [])
+  const revealProject = (index) => {
+    projectCardRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
+  }
 
-  const syncProgressFromScroll = useCallback(() => {
-    const content = contentRef.current
-    if (!content) return
+  const move = (step) => {
+    const nextIndex = (activeIndex + step + projects.length) % projects.length
+    setDirection(step)
+    setActiveIndex(nextIndex)
+    revealProject(nextIndex)
+  }
 
-    const scrollable = isContentScrollable(content)
-    setIsScrollable(scrollable)
+  const selectProject = (index) => {
+    setDirection(index > activeIndex ? 1 : -1)
+    setActiveIndex(index)
+    revealProject(index)
+    setIsOpen(true)
+  }
 
-    if (scrollable) {
-      const maxScroll = content.scrollHeight - content.clientHeight
-      const p = maxScroll > 0 ? content.scrollTop / maxScroll : 0
-      progressRef.current = p
-      setScrollProgress(p)
-      setThumbRatio(content.clientHeight / content.scrollHeight)
-    }
-  }, [isContentScrollable])
+  const selectViewerProject = (index) => {
+    setDirection(index > activeIndex ? 1 : -1)
+    setActiveIndex(index)
+    revealProject(index)
+  }
 
-  const goToSection = useCallback((id, scrollToBottom = false) => {
-    if (!sections.some((s) => s.id === id) || isTransitioning.current) return
+  const scrollProjects = (step) => {
+    carouselRef.current?.scrollBy({ left: carouselRef.current.clientWidth * step * 0.78, behavior: 'smooth' })
+  }
 
-    isTransitioning.current = true
-    setActiveSection(id)
-
-    requestAnimationFrame(() => {
-      const content = contentRef.current
-      if (content) {
-        if (scrollToBottom) {
-          content.scrollTop = content.scrollHeight
-          progressRef.current = 1
-          setScrollProgress(1)
-        } else {
-          content.scrollTop = 0
-          resetProgress()
-        }
-        syncProgressFromScroll()
-      } else {
-        resetProgress()
-      }
-    })
-
-    setTimeout(() => {
-      isTransitioning.current = false
-    }, TRANSITION_MS)
-  }, [resetProgress, syncProgressFromScroll])
-
-  const navigateToSection = useCallback((id) => {
-    goToSection(id)
-  }, [goToSection])
-
-  const applyProgress = useCallback((p) => {
-    const content = contentRef.current
-    if (!content) return
-
-    const clamped = Math.max(0, Math.min(1, p))
-
-    if (isContentScrollable(content)) {
-      const maxScroll = content.scrollHeight - content.clientHeight
-      content.scrollTop = clamped * maxScroll
-      progressRef.current = clamped
-      setScrollProgress(clamped)
-    } else {
-      progressRef.current = clamped
-      setScrollProgress(clamped)
-    }
-  }, [isContentScrollable])
-
-  const stepScroll = useCallback((direction) => {
-    if (isTransitioning.current) return
-
-    const content = contentRef.current
-    if (!content) return
-
-    const currentIndex = sections.findIndex((s) => s.id === activeSection)
-    const scrollable = isContentScrollable(content)
-    const maxScroll = content.scrollHeight - content.clientHeight
-    const atTop = content.scrollTop <= 1
-    const atBottom = content.scrollTop >= maxScroll - 1
-
-    if (direction === 'down') {
-      if (scrollable && !atBottom) {
-        content.scrollTop = Math.min(maxScroll, content.scrollTop + SCROLL_STEP)
-        syncProgressFromScroll()
-        return
-      }
-      if (currentIndex < sections.length - 1) {
-        goToSection(sections[currentIndex + 1].id)
-      }
-    } else {
-      if (scrollable && !atTop) {
-        content.scrollTop = Math.max(0, content.scrollTop - SCROLL_STEP)
-        syncProgressFromScroll()
-        return
-      }
-      if (currentIndex > 0) {
-        goToSection(sections[currentIndex - 1].id, true)
-      }
-    }
-  }, [activeSection, goToSection, isContentScrollable, syncProgressFromScroll])
-
-  useEffect(() => {
-    const target = routeToSection[location.pathname]
-    if (target) {
-      setActiveSection(target)
-      resetProgress()
-      if (location.pathname !== '/') {
-        navigate('/', { replace: true })
-      }
-    }
-  }, [location.pathname, navigate, resetProgress])
-
-  useEffect(() => {
-    syncPanelHeight()
-    resetProgress()
-
-    const sidebar = sidebarRef.current
-    if (!sidebar) return
-
-    const observer = new ResizeObserver(syncPanelHeight)
-    observer.observe(sidebar)
-    window.addEventListener('resize', syncPanelHeight)
-
-    return () => {
-      observer.disconnect()
-      window.removeEventListener('resize', syncPanelHeight)
-    }
-  }, [activeSection, syncPanelHeight, resetProgress])
-
-  useEffect(() => {
-    const content = contentRef.current
-    if (!content) return
-
-    const handleContentScroll = () => {
-      syncProgressFromScroll()
-    }
-
-    const resizeObserver = new ResizeObserver(() => {
-      syncProgressFromScroll()
-    })
-
-    content.addEventListener('scroll', handleContentScroll, { passive: true })
-    resizeObserver.observe(content)
-
-    const childObserver = new MutationObserver(() => {
-      requestAnimationFrame(syncProgressFromScroll)
-    })
-    childObserver.observe(content, { childList: true, subtree: true })
-
-    requestAnimationFrame(syncProgressFromScroll)
-
-    return () => {
-      content.removeEventListener('scroll', handleContentScroll)
-      resizeObserver.disconnect()
-      childObserver.disconnect()
-    }
-  }, [activeSection, syncProgressFromScroll])
-
-  useEffect(() => {
-    const content = contentRef.current
-    if (!content) return
-
-    const handleWheel = (e) => {
-      if (isTransitioning.current) {
-        e.preventDefault()
-        return
-      }
-
-      const currentIndex = sections.findIndex((s) => s.id === activeSection)
-      const scrollable = isContentScrollable(content)
-      const maxScroll = content.scrollHeight - content.clientHeight
-      const atTop = content.scrollTop <= 1
-      const atBottom = content.scrollTop >= maxScroll - 1
-
-      if (e.deltaY > 0) {
-        if (scrollable && !atBottom) {
-          e.preventDefault()
-          content.scrollTop = Math.min(maxScroll, content.scrollTop + e.deltaY)
-          syncProgressFromScroll()
-          return
-        }
-
-        e.preventDefault()
-        const base = scrollable && atBottom ? 1 : progressRef.current
-        progressRef.current = Math.min(1, base + SCROLL_CHARGE)
-        setScrollProgress(progressRef.current)
-
-        if (progressRef.current >= 1 && currentIndex < sections.length - 1) {
-          goToSection(sections[currentIndex + 1].id)
-        }
-      } else if (e.deltaY < 0) {
-        if (scrollable && !atTop) {
-          e.preventDefault()
-          content.scrollTop = Math.max(0, content.scrollTop + e.deltaY)
-          syncProgressFromScroll()
-          return
-        }
-
-        e.preventDefault()
-        const base = scrollable && atTop ? 0 : progressRef.current
-        progressRef.current = Math.max(0, base - SCROLL_CHARGE)
-        setScrollProgress(progressRef.current)
-
-        if (progressRef.current <= 0 && currentIndex > 0) {
-          goToSection(sections[currentIndex - 1].id, true)
-        }
-      }
-    }
-
-    content.addEventListener('wheel', handleWheel, { passive: false })
-    return () => content.removeEventListener('wheel', handleWheel)
-  }, [activeSection, goToSection, syncProgressFromScroll, isContentScrollable])
-
-  const ActiveComponent = sectionComponents[activeSection] || AboutSection
-
-  return (
-    <div className="min-h-screen bg-background p-3 sm:p-4 lg:p-5">
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-4 lg:gap-5 lg:items-start">
-        <Sidebar ref={sidebarRef} />
-
-        <main
-          className="flex-1 w-full min-w-0 overflow-hidden"
-          style={panelHeight ? { height: `${panelHeight}px` } : undefined}
-        >
-          <div className="section-panel flex flex-col h-full overflow-hidden">
-            <SectionNav activeSection={activeSection} onNavigate={navigateToSection} />
-
-            <div className="relative flex-1 min-h-0 overflow-hidden">
-              <div ref={contentRef} className="page-scroll page-content h-full pr-8">
-                <ActiveComponent />
-              </div>
-              <ScrollIndicator
-                progress={scrollProgress}
-                scrollable={isScrollable}
-                thumbRatio={thumbRatio}
-                onSeek={applyProgress}
-                onStepUp={() => stepScroll('up')}
-                onStepDown={() => stepScroll('down')}
-              />
-            </div>
-          </div>
-        </main>
-      </div>
+  return <>
+    <div className="carousel-controls" aria-label="Project carousel controls"><span>SCROLL TO EXPLORE</span><div><button type="button" onClick={() => scrollProjects(-1)} aria-label="Previous projects"><ArrowLeft size={15} /></button><button type="button" onClick={() => scrollProjects(1)} aria-label="Next projects"><ArrowRight size={15} /></button></div></div>
+    <div className="work-carousel" ref={carouselRef}>
+      {projects.map((project, index) => <button ref={(element) => { projectCardRefs.current[index] = element }} className={`work-card ${index === activeIndex ? 'work-card-active' : ''}`} key={project.title} onClick={() => selectProject(index)}><span className="work-index">0{index + 1}</span><div><small>{project.tag}</small><h3>{project.title}</h3><p>{project.description}</p><em>{project.stack}</em></div><span className="work-open">View <ArrowUpRight size={14} /></span></button>)}
     </div>
-  )
+    <AnimatePresence>
+      {isOpen && <motion.div className="project-viewer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <div className="viewer-toolbar"><span>PROJECT FILE / 0{activeIndex + 1}</span><button onClick={() => setIsOpen(false)} aria-label="Close project viewer">Close <X size={16} /></button></div>
+        <div className="viewer-stage">
+          <button className="viewer-arrow viewer-arrow-left" onClick={() => move(-1)} aria-label="Previous project"><ArrowLeft size={20} /></button>
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div className="viewer-content" key={activeProject.title} custom={direction} initial={{ opacity: 0, x: direction * 28 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: direction * -28 }} transition={{ duration: .28, ease: 'easeOut' }}>
+              <div className="viewer-image"><img src={activeProject.image.startsWith('/') ? activeProject.image : `${basePath}${activeProject.image}`} alt={`${activeProject.title} project screenshot`} /></div>
+              <div className="viewer-copy"><p className="dossier-marker">{activeProject.tag}</p><h3>{activeProject.title}</h3><p>{activeProject.detail}</p><span>{activeProject.stack}</span><div className="viewer-counter"><b>0{activeIndex + 1}</b> / 0{projects.length}</div></div>
+            </motion.div>
+          </AnimatePresence>
+          <button className="viewer-arrow viewer-arrow-right" onClick={() => move(1)} aria-label="Next project"><ArrowRight size={20} /></button>
+        </div>
+        <div className="viewer-steps">{projects.map((project, index) => <button key={project.title} onClick={() => selectViewerProject(index)} className={index === activeIndex ? 'step-active' : ''} aria-label={`View ${project.title}`} />)}</div>
+      </motion.div>}
+    </AnimatePresence>
+  </>
 }
+
+const Home = ({ onToggleTheme }) => (
+  <main className="dossier">
+    <header className="dossier-header">
+      <a href="#top" className="dossier-mark">SRG<span>•</span></a>
+      <p>PERSONAL PORTFOLIO / 2026</p>
+      <div className="header-actions"><Link to="/contact">AVAILABLE FOR WORK <ArrowUpRight size={14} /></Link></div>
+    </header>
+
+    <section id="top" className="masthead">
+      <div className="masthead-title"><Marker>01 — INTRODUCTION</Marker><h1>SAM<br />RICHMOND<br /><i>GO</i></h1></div>
+      <div className="masthead-image" onDoubleClick={onToggleTheme} role="button" tabIndex="0" onKeyDown={(event) => { if (event.key === 'Enter') onToggleTheme() }}><img src={`${basePath}sam.jpg`} alt="Sam Richmond Go" /><span>FULL-STACK<br />DEVELOPER</span></div>
+      <div className="masthead-note"><p>Based in</p><strong>Imus, Cavite<br />Philippines</strong><p className="note-bottom">Making useful digital products from a rough idea to a working experience.</p></div>
+    </section>
+
+    <section className="snapshot">
+      <div className="snapshot-intro"><Marker>A SHORT NOTE</Marker><p>I build clear, dependable web and mobile products — with an eye on both the experience people see and the systems that make it work.</p></div>
+      <div className="snapshot-detail"><Marker>CONTACT</Marker><a href="mailto:sam.richmond.go@gmail.com"><Mail size={15} /> sam.richmond.go@gmail.com</a><a href="tel:+639602022402"><Phone size={15} /> 0960 202 2402</a><p><MapPin size={15} /> Imus, Cavite, Philippines</p></div>
+      <div className="snapshot-detail"><Marker>AROUND THE WEB</Marker><a href="https://github.com/Shiroe28" target="_blank" rel="noreferrer"><Github size={15} /> GitHub <ArrowUpRight size={13} /></a><a href="https://www.linkedin.com/in/sam-richmond-go-25b0bb352" target="_blank" rel="noreferrer"><Linkedin size={15} /> LinkedIn <ArrowUpRight size={13} /></a></div>
+    </section>
+
+    <section id="projects" className="work-section">
+      <div className="section-banner"><Marker>02 — SELECTED WORK</Marker><h2>Things I&apos;ve made <span>so far.</span></h2><p>Six projects, shown three at a time across mobile, web, learning, analytics, fitness, and games.</p></div>
+      <ProjectShowcase />
+    </section>
+
+    <section className="details-section">
+      <div id="stack" className="detail-panel stack-panel"><Marker>03 — TOOLKIT</Marker><h2>A practical<br />set of tools.</h2><div className="skill-cloud">{skills.map((skill) => <span key={skill}>{skill}</span>)}</div></div>
+      <div id="credentials" className="detail-panel"><Marker>04 — CERTIFICATES</Marker><div className="certificate-list">{credentials.map(([name, issuer, file], index) => <a key={name} href={`${basePath}${file}`} target="_blank" rel="noreferrer"><b>0{index + 1}</b><span>{name}<small>{issuer}</small></span><ArrowUpRight size={15} /></a>)}</div><div className="closing-note"><p>CURRENTLY EXPLORING</p><strong>AI-enabled products, scalable mobile experiences, and better ways to turn everyday problems into useful tools.</strong></div></div>
+    </section>
+
+    <footer className="dossier-footer"><p>© {new Date().getFullYear()} Sam Richmond Go</p><Link to="/contact">Start a conversation <ArrowUpRight size={16} /></Link></footer>
+  </main>
+)
 
 export default Home
