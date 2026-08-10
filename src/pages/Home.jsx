@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, Github, Linkedin, Mail, MapPin, Mo
 import { Link } from 'react-router-dom'
 import lastCredImage from '../../LastCred.png'
 import GitHubContributions from '../components/GitHubContributions'
+import OrbitRunner from '../components/OrbitRunner'
 
 const basePath = import.meta.env.BASE_URL
 
@@ -147,6 +148,8 @@ const Home = ({ onToggleTheme }) => {
       <div id="stack" className="detail-panel stack-panel"><Marker>04 — TOOLKIT</Marker><h2>A practical<br />set of tools.</h2><div className="tool-explorer"><div><p className="tool-explorer-label">{String(activeSkillIndex + 1).padStart(2, '0')} / {String(skills.length).padStart(2, '0')}</p><h3>{activeSkill}</h3><p>{skillDetails[activeSkill]}</p></div><div className="tool-explorer-controls"><button type="button" onClick={() => moveSkill(-1)} aria-label="Previous tool"><ArrowLeft size={16} /></button><button type="button" onClick={() => moveSkill(1)} aria-label="Next tool"><ArrowRight size={16} /></button></div></div><div className="skill-cloud" aria-label="All tools">{skills.map((skill, index) => <button type="button" key={skill} className={index === activeSkillIndex ? 'skill-active' : ''} onClick={() => setActiveSkillIndex(index)} aria-pressed={index === activeSkillIndex}>{skill}</button>)}</div></div>
       <div id="credentials" className="detail-panel"><Marker>05 — CERTIFICATES</Marker><div className="certificate-list">{credentials.map(([name, issuer, file], index) => <a key={name} href={`${basePath}${file}`} target="_blank" rel="noreferrer"><b>0{index + 1}</b><span>{name}<small>{issuer}</small></span><ArrowUpRight size={15} /></a>)}</div><div className="closing-note"><p>CURRENTLY EXPLORING</p><strong>AI-enabled products, scalable mobile experiences, and better ways to turn everyday problems into useful tools.</strong></div></div>
     </section>
+
+    <section className="orbit-runner-section"><p className="dossier-marker">06 — QUICK BREAK</p><OrbitRunner /></section>
 
     <footer className="dossier-footer"><p>© {new Date().getFullYear()} Sam Richmond Go</p><Link to="/contact">Start a conversation <ArrowUpRight size={16} /></Link></footer>
   </main>
