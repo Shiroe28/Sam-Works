@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { ArrowLeft, ArrowUpRight, Mail, Send } from 'lucide-react'
+import { ArrowLeft, ArrowUpRight, Mail, Moon, Send, Sun } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-const ContactPage = () => {
+const ContactPage = ({ onToggleTheme }) => {
   const [formData, setFormData] = useState({ name: '', company: '', email: '', projectType: '', budget: '', message: '' })
   const [status, setStatus] = useState('idle')
 
@@ -38,7 +38,7 @@ const ContactPage = () => {
     <header className="dossier-header">
       <Link to="/" className="dossier-mark">SRG<span>•</span></Link>
       <p>NEW PROJECT ENQUIRY</p>
-      <div className="header-actions"><Link to="/">BACK TO PORTFOLIO <ArrowLeft size={14} /></Link></div>
+      <div className="header-actions"><button className="theme-toggle" onClick={onToggleTheme} aria-label="Toggle light and dark mode" title="Toggle theme"><Sun className="theme-icon theme-icon-sun" size={15} /><Moon className="theme-icon theme-icon-moon" size={14} /></button><Link to="/">BACK TO PORTFOLIO <ArrowLeft size={14} /></Link></div>
     </header>
 
     <section className="contact-intro">
