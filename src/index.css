@@ -163,7 +163,16 @@ html.theme-night, html.theme-night body { background: #0a0a0a; color: #ededed; }
 .orbit-runner-section { padding: 48px 0 0; }.orbit-runner-section > .dossier-marker { margin-bottom: 14px; }.orbit-runner-section .orbit-runner { min-height: 330px; }.orbit-runner-section .orbit-runner-stage { min-height: 250px; }.orbit-runner-controls button:disabled { cursor: not-allowed; opacity: .42; }.orbit-runner-controls button:disabled:hover { border-color: #9ca59c; color: #15241f; }.theme-night .orbit-runner-controls button:disabled:hover { border-color: #3a3a3a; color: #ededed; }
 @media (max-width: 520px) { .orbit-runner-section { padding-top: 36px; }.orbit-runner-section .orbit-runner { min-height: 275px; }.orbit-runner-section .orbit-runner-stage { min-height: 190px; } }
 
-.orbit-character-crouching { width: 31px; height: 14px; transform: translateY(9px); border-radius: 7px 7px 5px 5px; }.orbit-character-crouching::before, .orbit-character-crouching::after { top: -3px; height: 5px; }.orbit-obstacle-ship { bottom: 48px; }
+.orbit-character-crouching { width: 31px; height: 14px; transform: none; border-radius: 7px 7px 5px 5px; }.orbit-character-crouching::before, .orbit-character-crouching::after { top: -3px; height: 5px; }.orbit-obstacle-ship { bottom: 36px; }
+
+/* Seasonal trap variants. Ground traps still require a jump; ships require a crouch. */
+.orbit-obstacle-snowman { width: 21px; height: 25px; border-radius: 50% 50% 42% 42%; background: #f5fbfc !important; border-color: #86a4ad; }.orbit-obstacle-snowman::after { content: '• •'; position: absolute; top: 3px; left: 3px; color: #375360; font-size: 7px; letter-spacing: 1px; }.orbit-obstacle-yeti { width: 23px; height: 27px; border-radius: 9px 9px 4px 4px; background: #b8d3e1 !important; border-color: #6e96aa; }.orbit-obstacle-yeti::after { content: '⌄'; position: absolute; top: 3px; left: 6px; color: #31586d; font: 12px serif; }.orbit-obstacle-cactus { width: 15px; height: 29px; border-radius: 8px 8px 3px 3px; background: #78a86d !important; border-color: #3f7444; }.orbit-obstacle-cactus::before { content: ''; position: absolute; top: 8px; left: -7px; width: 8px; height: 11px; border: 2px solid #3f7444; border-right: 0; border-radius: 6px 0 0 6px; }.orbit-obstacle-sun-orb { width: 22px; height: 22px; border-radius: 50%; background: #f3b34b !important; border-color: #cc7e32; }.orbit-obstacle-pumpkin { width: 23px; height: 21px; border-radius: 45% 45% 42% 42%; background: #d97a42 !important; border-color: #914529; }.orbit-obstacle-pumpkin::before { content: ''; position: absolute; top: -7px; left: 8px; width: 4px; height: 7px; background: #5d6e42; }.orbit-obstacle-branch { width: 27px; height: 9px; border-radius: 10px; background: #8c563c !important; border-color: #5c3529; }.orbit-obstacle-flower { width: 14px; height: 25px; border-radius: 10px 10px 3px 3px; background: #78a85e !important; border-color: #4d7b49; }.orbit-obstacle-flower::before { content: ''; position: absolute; top: -9px; left: -4px; width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle, #f1c95d 0 3px, #e891aa 4px 7px, transparent 8px); }.orbit-obstacle-bee { width: 23px; height: 13px; border-radius: 55% 45% 50% 50%; background: repeating-linear-gradient(90deg, #e8bc42 0 5px, #3a3930 5px 8px) !important; border-color: #775f20; }.orbit-obstacle-bee::before { content: ''; position: absolute; top: -7px; left: 2px; width: 10px; height: 8px; border-radius: 50% 50% 0 50%; background: rgb(219 241 245 / .75); }
+.theme-night .orbit-obstacle-snowman { background: #c9e2eb !important; }.theme-night .orbit-obstacle-yeti { background: #7099ad !important; }.theme-night .orbit-obstacle-cactus { background: #5e9a58 !important; }.theme-night .orbit-obstacle-sun-orb { background: #f19b3f !important; }.theme-night .orbit-obstacle-pumpkin { background: #cf643a !important; }.theme-night .orbit-obstacle-flower { background: #69a95e !important; }
+
+/* Cleaner winter scene and more legible seasonal characters. */
+.orbit-season-winter { background: #edf4f6 !important; }.orbit-season-winter .orbit-season-scene { background-color: #edf4f6; background-image: radial-gradient(circle at 15% 20%, rgb(255 255 255 / .95) 0 1px, transparent 2px), radial-gradient(circle at 70% 32%, rgb(255 255 255 / .82) 0 1px, transparent 2px), radial-gradient(circle at 40% 70%, rgb(255 255 255 / .8) 0 1px, transparent 2px), linear-gradient(#eaf3f6, #dbe9ed); }.orbit-season-winter .orbit-season-scene::after { height: 26%; background: radial-gradient(ellipse at 12% 105%, #f8fbfc 0 38%, transparent 39%), radial-gradient(ellipse at 54% 110%, #f8fbfc 0 42%, transparent 43%), radial-gradient(ellipse at 93% 108%, #f8fbfc 0 40%, transparent 41%); }
+.orbit-obstacle-snowman { width: 29px; height: 34px; border: 1px solid #7899a5; border-radius: 48% 48% 42% 42%; background: radial-gradient(circle at 42% 25%, #263f4b 0 1.5px, transparent 2px), radial-gradient(circle at 61% 25%, #263f4b 0 1.5px, transparent 2px), radial-gradient(ellipse at 53% 38%, #e98752 0 4px, transparent 4.5px), radial-gradient(circle at 51% 27%, #fbffff 0 11px, transparent 11.5px), radial-gradient(circle at 50% 82%, #f3fafc 0 15px, transparent 15.5px) !important; }.orbit-obstacle-snowman::after { content: ''; top: 19px; left: 12px; width: 4px; height: 4px; border-radius: 50%; background: #47616a; box-shadow: 0 6px #47616a; }.orbit-obstacle-yeti { width: 30px; height: 34px; border: 2px solid #678fa3; border-radius: 13px 13px 7px 7px; background: radial-gradient(circle at 37% 37%, #183d52 0 2px, transparent 2.5px), radial-gradient(circle at 63% 37%, #183d52 0 2px, transparent 2.5px), radial-gradient(ellipse at 50% 59%, #e8f3f5 0 8px, transparent 8.5px), #b4d4e2 !important; }.orbit-obstacle-yeti::before { content: ''; position: absolute; top: -7px; left: 3px; width: 8px; height: 9px; border: 2px solid #678fa3; border-bottom: 0; border-radius: 7px 7px 0 0; background: #b4d4e2; box-shadow: 13px 0 #b4d4e2, 13px 0 0 2px #678fa3; }.orbit-obstacle-yeti::after { content: ''; top: 21px; left: 11px; width: 7px; height: 3px; border-radius: 0 0 6px 6px; background: #31586d; }
+.orbit-obstacle-cactus { width: 20px; height: 34px; }.orbit-obstacle-sun-orb { width: 29px; height: 29px; box-shadow: 0 0 0 4px rgb(243 179 75 / .25), 0 0 12px rgb(243 179 75 / .55); }.orbit-obstacle-pumpkin { width: 29px; height: 26px; }.orbit-obstacle-flower { width: 18px; height: 30px; }.orbit-obstacle-bee { width: 28px; height: 16px; }
 
 /* Light mode keeps the runner deliberately clean and paper-white. */
 html:not(.theme-night) .orbit-runner { background: #f7f6f2; }html:not(.theme-night) .orbit-runner-stage { background: #f7f6f2; }html:not(.theme-night) .orbit-stars { background-image: none; }html:not(.theme-night) .orbit-obstacle { background: #f7f6f2; }
@@ -270,3 +279,55 @@ html:not(.theme-night) .orbit-runner { background: #f7f6f2; }html:not(.theme-nig
   .contact-form { gap: 26px; }
   .contact-form input, .contact-form textarea { font-size: 16px; }
 }
+
+/* Mobile typography and composition: intentional hierarchy instead of scaled-down desktop text. */
+@media (max-width: 520px) {
+  .dossier-marker { font-size: 9px; line-height: 1.35; letter-spacing: .08em; }
+  .dossier-header .dossier-mark { font-size: 15px; }
+  .header-actions > a { max-width: 132px; justify-content: flex-end; text-align: right; line-height: 1.25; white-space: normal; }
+  .masthead { padding-top: 28px; padding-bottom: 26px; }
+  .masthead h1 { font-size: clamp(56px, 17.5vw, 72px); letter-spacing: -.11em; }
+  .masthead-note { padding-top: 14px; font-size: 11px; line-height: 1.35; }
+  .masthead-note strong { font-size: 13px; }
+  .snapshot { gap: 22px; padding: 25px 0; }
+  .snapshot-intro > p { max-width: 34ch; font-size: 15px; line-height: 1.55; }
+  .snapshot-detail { gap: 11px; }
+  .snapshot-detail a, .snapshot-detail p { font-size: 12px; line-height: 1.35; }
+  .work-section, .contribution-section { padding: 42px 0; }
+  .section-banner { margin-bottom: 22px; }
+  .section-banner h2, .detail-panel h2 { font-size: clamp(34px, 11vw, 47px); line-height: .92; }
+  .section-banner > p { font-size: 11px; max-width: 28ch; }
+  .work-card h3 { font-size: 24px; }
+  .work-card p { font-size: 12px; }
+  .viewer-copy h3 { font-size: 42px; }
+  .viewer-copy > p:not(.dossier-marker) { font-size: 13px; }
+  .tool-explorer { min-height: 176px; padding: 15px; }
+  .tool-explorer h3 { font-size: 27px; }
+  .tool-explorer > div:first-child > p:last-child { font-size: 12px; }
+  .certificate-list a { font-size: 12px; }
+  .closing-note { margin-top: 30px; }
+  .closing-note strong { font-size: 13px; }
+  .contribution-banner > p { max-width: 30ch; }
+  .contribution-grid-footer { align-items: flex-start; }
+  .contribution-grid-footer p { max-width: 100%; line-height: 1.35; }
+  .orbit-runner-section { padding-top: 34px; }
+  .orbit-runner-header { grid-template-columns: 1fr auto; }
+  .orbit-runner-header b { grid-row: 2; grid-column: 1 / -1; justify-self: start; }
+  .orbit-runner-header > :last-child { grid-column: 2; grid-row: 1; }
+  .dossier-footer { flex-direction: column; align-items: flex-start; justify-content: center; gap: 12px; padding: 20px 0; }
+  .dossier-footer p { display: block; }
+}
+
+@media (min-width: 521px) and (max-width: 830px) {
+  .dossier { padding: 0 26px; }
+  .masthead h1 { font-size: clamp(74px, 12vw, 102px); }
+  .section-banner h2, .detail-panel h2 { font-size: clamp(42px, 7vw, 58px); }
+  .contribution-grid { gap: 3px; }
+  .tool-explorer-controls button { width: 46px; height: 46px; }
+}
+
+/* Score-based seasons for Orbit Runner. */
+.orbit-season-scene { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }.orbit-season-scene::after { content: ''; position: absolute; right: 0; bottom: 0; left: 0; height: 42%; opacity: .7; }.orbit-season-winter { background: #eaf1f4 !important; }.orbit-season-winter .orbit-season-scene { background-image: radial-gradient(circle at 15% 20%, rgb(255 255 255 / .9) 0 1px, transparent 2px), radial-gradient(circle at 70% 32%, rgb(255 255 255 / .7) 0 1px, transparent 2px), radial-gradient(circle at 40% 70%, rgb(255 255 255 / .7) 0 1px, transparent 2px); background-size: 34px 34px, 46px 46px, 57px 57px; animation: snow-drift 6s linear infinite; }.orbit-season-winter .orbit-season-scene::after { background: linear-gradient(135deg, transparent 0 45%, #d7e4e8 46% 62%, transparent 63%), linear-gradient(45deg, transparent 0 43%, #c4d9df 44% 64%, transparent 65%); }.orbit-season-summer { background: #fff0bd !important; }.orbit-season-summer .orbit-season-scene { background: radial-gradient(circle at 83% 18%, rgb(255 206 88 / .85) 0 12px, transparent 13px), linear-gradient(#fff4cb 0 66%, #d9e8a7 67%); }.orbit-season-summer .orbit-season-scene::after { background: radial-gradient(ellipse at 22% 105%, #91bd70 0 42%, transparent 43%), radial-gradient(ellipse at 78% 110%, #78aa66 0 45%, transparent 46%); }.orbit-season-autumn { background: #f8e0c8 !important; }.orbit-season-autumn .orbit-season-scene { background: radial-gradient(ellipse at 24% 100%, #ce8354 0 36%, transparent 37%), radial-gradient(ellipse at 78% 110%, #b96143 0 42%, transparent 43%), linear-gradient(#f5d7b6 0 67%, #d79a60 68%); }.orbit-season-autumn .orbit-season-scene::after { background-image: radial-gradient(#b7573d 1px, transparent 2px), radial-gradient(#e29b4f 1px, transparent 2px); background-size: 25px 31px, 38px 42px; animation: leaf-drift 5s linear infinite; }.orbit-season-spring { background: #e1f0df !important; }.orbit-season-spring .orbit-season-scene { background: radial-gradient(circle at 19% 24%, rgb(255 189 205 / .85) 0 5px, transparent 6px), radial-gradient(circle at 78% 30%, rgb(255 213 157 / .85) 0 5px, transparent 6px), linear-gradient(#e9f5e2 0 66%, #b9dda2 67%); }.orbit-season-spring .orbit-season-scene::after { background: radial-gradient(ellipse at 13% 110%, #8abd74 0 32%, transparent 33%), radial-gradient(ellipse at 73% 110%, #7fac6d 0 38%, transparent 39%); }
+.orbit-season-winter .meteor { background: #a7c9db; }.orbit-season-winter .meteor i { background: linear-gradient(90deg, transparent, #a7c9db); }.orbit-season-summer .meteor { background: #e69a3f; }.orbit-season-summer .meteor i { background: linear-gradient(90deg, transparent, #e69a3f); }.orbit-season-autumn .meteor { background: #bc6246; }.orbit-season-autumn .meteor i { background: linear-gradient(90deg, transparent, #bc6246); }.orbit-season-spring .meteor { background: #71aa79; }.orbit-season-spring .meteor i { background: linear-gradient(90deg, transparent, #71aa79); }
+@keyframes snow-drift { to { background-position: 34px 68px, -46px 92px, 57px 114px; } }@keyframes leaf-drift { to { background-position: 25px 62px, -38px 84px; } }
+.theme-night .orbit-season-winter { background: #111b28 !important; }.theme-night .orbit-season-winter .orbit-season-scene { background-color: #16263a; }.theme-night .orbit-season-winter .orbit-season-scene::after { filter: brightness(.5); }.theme-night .orbit-season-summer { background: #211908 !important; }.theme-night .orbit-season-summer .orbit-season-scene { background: radial-gradient(circle at 83% 18%, rgb(255 164 55 / .65) 0 12px, transparent 13px), linear-gradient(#2d250f 0 66%, #2a3b1b 67%); }.theme-night .orbit-season-summer .orbit-season-scene::after { filter: brightness(.45); }.theme-night .orbit-season-autumn { background: #251611 !important; }.theme-night .orbit-season-autumn .orbit-season-scene { filter: brightness(.5) saturate(.85); }.theme-night .orbit-season-spring { background: #12261a !important; }.theme-night .orbit-season-spring .orbit-season-scene { filter: brightness(.48) saturate(.9); }.theme-night .orbit-season-winter .meteor { background: #bfe5ff; }.theme-night .orbit-season-winter .meteor i { background: linear-gradient(90deg, transparent, #bfe5ff); }
