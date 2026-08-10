@@ -38,7 +38,7 @@ const ContactPage = () => {
     <header className="dossier-header">
       <Link to="/" className="dossier-mark">SRG<span>•</span></Link>
       <p>NEW PROJECT ENQUIRY</p>
-      <div className="header-actions"><Link to="/">BACK <ArrowLeft size={14} /></Link></div>
+      <div className="header-actions"><Link to="/">BACK TO PORTFOLIO <ArrowLeft size={14} /></Link></div>
     </header>
 
     <section className="contact-intro">

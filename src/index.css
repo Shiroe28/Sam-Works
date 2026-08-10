@@ -45,3 +45,41 @@ html.theme-night, html.theme-night body { background: #050505; color: #fff7fc; }
 @media (max-width: 520px) { .work-carousel .work-card { flex-basis: 88%; min-height: 215px; }.carousel-controls { margin-bottom: 8px; } }
 @media (max-width: 830px) { .contact-intro { grid-template-columns: 1fr; gap: 25px; }.contact-layout { grid-template-columns: 1fr; }.contact-aside { padding: 35px 0; border-bottom: 1px solid #9ca59c; }.contact-form { border-left: 0; padding: 35px 0 50px; }.theme-night .contact-aside { border-color: #3b2635; } }
 @media (max-width: 520px) { .header-actions { gap: 8px; }.theme-toggle { padding: 5px; }.theme-toggle span { display: none; }.contact-intro { padding: 54px 0 35px; }.contact-intro h1 { font-size: 59px; }.form-grid { grid-template-columns: 1fr; gap: 23px; } }
+
+/* Responsive guardrails: prevent grid content and long contact details from widening the page. */
+body { min-width: 320px; overflow-x: hidden; }
+.dossier > *, .masthead > *, .snapshot > *, .section-banner > *, .viewer-content > *, .details-section > *, .contact-intro > *, .contact-layout > *, .form-grid > * { min-width: 0; }
+.masthead { grid-template-columns: minmax(0, 1.15fr) minmax(0, .7fr) minmax(0, .55fr); }
+.snapshot { grid-template-columns: minmax(0, 1.3fr) minmax(0, .85fr) minmax(0, .7fr); }
+.section-banner { grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr) minmax(0, .6fr); }
+.viewer-content { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); }
+.contact-intro { grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); }
+.contact-layout { grid-template-columns: minmax(0, .65fr) minmax(0, 1.35fr); }
+.form-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.snapshot-detail a, .contact-aside a { overflow-wrap: anywhere; }
+.contact-form input, .contact-form textarea { min-width: 0; }
+.viewer-arrow { width: 44px; height: 44px; }
+.viewer-steps button { height: 8px; }
+
+@media (max-width: 830px) {
+  .masthead { grid-template-columns: minmax(0, 1fr) 160px; }
+  .snapshot, .section-banner { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .contact-intro, .contact-layout, .details-section { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 620px) {
+  .masthead { grid-template-columns: minmax(0, 1fr) 112px; gap: 14px; }
+  .masthead h1 { font-size: clamp(49px, 11vw, 64px); }
+  .masthead-image { height: 205px; }
+}
+
+@media (max-width: 520px) {
+  .dossier { padding: 0 18px; }
+  .masthead { grid-template-columns: 1fr; min-height: 0; padding: 34px 0 30px; gap: 20px; }
+  .masthead h1 { font-size: clamp(54px, 17vw, 64px); }
+  .masthead-image { width: min(100%, 230px); height: 210px; justify-self: end; }
+  .section-banner h2 { font-size: clamp(32px, 12vw, 48px); }
+  .contact-intro h1 { font-size: clamp(48px, 15vw, 59px); overflow-wrap: anywhere; }
+  .contact-aside a { align-items: flex-start; }
+  .form-grid, .viewer-content { grid-template-columns: 1fr; }
+}

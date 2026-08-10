@@ -7,12 +7,12 @@ import lastCredImage from '../../LastCred.png'
 const basePath = import.meta.env.BASE_URL
 
 const projects = [
-  { title: 'Aura', tag: 'PERSONAL GROWTH', description: 'Goals, tasks, and daily journaling in one focused mobile space.', detail: 'Aura helps people keep personal goals, task lists, and daily reflections in one calm, useful place.', stack: 'Flutter · Firebase', image: 'Aura.png' },
-  { title: 'Hakbang', tag: 'CAREER GUIDE', description: 'An IT career guide with administration tools and AI recommendations.', detail: 'A guided career companion for IT students, combining curated paths, an admin dashboard, and tailored AI recommendations.', stack: 'Flutter · AI · Firebase', image: 'Hakbang.png' },
-  { title: 'Equity', tag: 'ANALYTICS', description: 'Live business insights and profit tracking for shop owners.', detail: 'Equity brings essential business signals together so shop owners can understand performance and profit at a glance.', stack: 'Flutter · Analytics', image: 'Equity.png' },
-  { title: 'REVU', tag: 'EDUCATION', description: 'A flashcard experience with deck management for better learning.', detail: 'A focused study tool designed around flexible flashcard decks and a friction-free learning routine.', stack: 'Flutter · Mobile', image: 'Revu.png' },
+  { title: 'Hakbang', tag: 'CAREER GUIDE', description: 'An IT career guide with administration tools and AI recommendations.', detail: 'A guided career companion for IT students, combining curated paths, an admin dashboard, and tailored AI recommendations.', stack: 'C++ · ESP32 · React Native · Next.js', image: 'Hakbang.png' },
   { title: 'PersoFit', tag: 'FITNESS', description: 'Workout plans and progress analytics in a full-stack web app.', detail: 'PersoFit pairs structured workout plans with progress analytics, giving users a clearer view of their fitness journey.', stack: 'React · Node.js', image: 'Persofit.png' },
   { title: 'LastCred', tag: 'GAME EXPERIENCE', description: 'A neon isometric arcade survival game where every second is a decision.', detail: 'LastCred is a fast-paced arena survival concept built around responsive combat feedback, wave escalation, and a vivid neon atmosphere.', stack: 'Three.js · JavaScript', image: lastCredImage },
+  { title: 'Aura', tag: 'PERSONAL GROWTH', description: 'Goals, tasks, and daily journaling in one focused mobile space.', detail: 'Aura helps people keep personal goals, task lists, and daily reflections in one calm, useful place.', stack: 'Flutter · Firebase', image: 'Aura.png' },
+  { title: 'Equity', tag: 'ANALYTICS', description: 'Live business insights and profit tracking for shop owners.', detail: 'Equity brings essential business signals together so shop owners can understand performance and profit at a glance.', stack: 'Flutter · Analytics', image: 'Equity.png' },
+  { title: 'REVU', tag: 'EDUCATION', description: 'A flashcard experience with deck management for better learning.', detail: 'A focused study tool designed around flexible flashcard decks and a friction-free learning routine.', stack: 'Flutter · Mobile', image: 'Revu.png' },
 ]
 
 const credentials = [
@@ -102,7 +102,7 @@ const Home = ({ onToggleTheme }) => (
     </section>
 
     <section className="snapshot">
-      <div className="snapshot-intro"><Marker>A SHORT NOTE</Marker><p>I build clear, dependable web and mobile products — with an eye on both the experience people see and the systems that make it work.</p></div>
+      <div className="snapshot-intro"><Marker>A SHORT NOTE</Marker><p>Software Engineer specializing in complex backend architectures and hardware-to-software integrations. I build scalable, production-ready systems using Next.js, React Native, and Supabase.</p></div>
       <div className="snapshot-detail"><Marker>CONTACT</Marker><a href="mailto:sam.richmond.go@gmail.com"><Mail size={15} /> sam.richmond.go@gmail.com</a><a href="tel:+639602022402"><Phone size={15} /> 0960 202 2402</a><p><MapPin size={15} /> Imus, Cavite, Philippines</p></div>
       <div className="snapshot-detail"><Marker>AROUND THE WEB</Marker><a href="https://github.com/Shiroe28" target="_blank" rel="noreferrer"><Github size={15} /> GitHub <ArrowUpRight size={13} /></a><a href="https://www.linkedin.com/in/sam-richmond-go-25b0bb352" target="_blank" rel="noreferrer"><Linkedin size={15} /> LinkedIn <ArrowUpRight size={13} /></a></div>
     </section>
