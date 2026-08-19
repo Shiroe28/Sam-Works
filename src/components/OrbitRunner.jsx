@@ -29,23 +29,39 @@ const createObstacle = (score, position, id) => {
 
 const OrbitRunner = () => {
   const [isRunning, setIsRunning] = useState(false)
-  const [isJumping, setIsJumping] = useState(false)
+  const [jumpCount, setJumpCount] = useState(0)
   const [isCrouching, setIsCrouching] = useState(false)
   const [obstacles, setObstacles] = useState([{ id: 1, type: 'trap', season: 'orbit', variant: 'signal', position: 105 }])
   const [score, setScore] = useState(0)
   const playerRef = useRef(null)
   const obstacleRefs = useRef(new Map())
+  const jumpTimerRef = useRef(null)
   const season = getSeason(score)
 
   const jump = () => {
-    if (!isRunning || isJumping) return
-    setIsJumping(true)
-    window.setTimeout(() => setIsJumping(false), 430)
+    if (!isRunning) return
+    setJumpCount((currentCount) => {
+      if (currentCount >= 2) return currentCount // Maximum 2 jumps (single or double jump only)
+      const nextCount = currentCount + 1
+
+      if (jumpTimerRef.current) {
+        clearTimeout(jumpTimerRef.current)
+      }
+
+      // 1st jump stays airborne ~420ms, 2nd jump extends airborne time ~480ms
+      const duration = nextCount === 1 ? 420 : 480
+      jumpTimerRef.current = setTimeout(() => {
+        setJumpCount(0)
+      }, duration)
+
+      return nextCount
+    })
   }
 
   const restart = () => {
+    if (jumpTimerRef.current) clearTimeout(jumpTimerRef.current)
     setScore(0)
-    setIsJumping(false)
+    setJumpCount(0)
     setIsCrouching(false)
     setObstacles([createObstacle(0, 105, Date.now())])
     setIsRunning(true)
@@ -55,6 +71,7 @@ const OrbitRunner = () => {
     const onKeyDown = (event) => {
       if (event.code === 'Space') {
         event.preventDefault()
+        if (event.repeat) return // Cannot hold space to stay in the air
         jump()
       }
       if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
@@ -66,8 +83,17 @@ const OrbitRunner = () => {
     }
     window.addEventListener('keydown', onKeyDown)
     window.addEventListener('keyup', onKeyUp)
-    return () => { window.removeEventListener('keydown', onKeyDown); window.removeEventListener('keyup', onKeyUp) }
-  }, [isRunning, isJumping])
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener('keyup', onKeyUp)
+    }
+  }, [isRunning])
+
+  useEffect(() => {
+    return () => {
+      if (jumpTimerRef.current) clearTimeout(jumpTimerRef.current)
+    }
+  }, [])
 
   useEffect(() => {
     if (!isRunning) return undefined
@@ -103,22 +129,85 @@ const OrbitRunner = () => {
       const verticalOverlap = player.top + 3 < target.bottom - 2 && player.bottom - 3 > target.top + 2
       return horizontalOverlap && verticalOverlap
     })
-    if (collided) setIsRunning(false)
-  }, [isRunning, isJumping, isCrouching, obstacles])
+    if (collided) {
+      if (jumpTimerRef.current) clearTimeout(jumpTimerRef.current)
+      setIsRunning(false)
+      setJumpCount(0)
+    }
+  }, [isRunning, jumpCount, isCrouching, obstacles])
 
-  return <aside className="orbit-runner" aria-label="Orbit Runner mini game">
-    <div className="orbit-runner-header"><span>MINI BREAK · {season.name}</span><b>FOURSEASON RUNNER</b><span>SCORE {String(score).padStart(2, '0')}</span></div>
-    <div className={`orbit-runner-stage ${season.className}`} onClick={jump} role="button" tabIndex="0" onKeyDown={(event) => { if (event.key === 'Enter') jump() }} aria-label="Jump over traps and crouch below spacecraft">
-      <div className="orbit-season-scene" />
-      <Meteors />
-      <div ref={playerRef} className={`orbit-character ${isJumping ? 'orbit-character-jumping' : ''} ${isCrouching ? 'orbit-character-crouching' : ''}`}><i>◉</i><i>◉</i></div>
-      {obstacles.map((obstacle) => <div key={obstacle.id} ref={(element) => { if (element) obstacleRefs.current.set(obstacle.id, element); else obstacleRefs.current.delete(obstacle.id) }} className={`orbit-obstacle orbit-obstacle-${obstacle.type} orbit-obstacle-${obstacle.variant}`} style={{ left: `${obstacle.position}%` }} />)}
-      <div className="orbit-ground" />
-      <strong className="orbit-score">{String(score).padStart(2, '0')}</strong>
-      {!isRunning && <p className="orbit-message">{score ? 'Signal lost — restart to try again' : 'Press start to run'}</p>}
-    </div>
-    <div className="orbit-runner-controls"><button type="button" onClick={restart}><Play size={13} /> {isRunning ? 'Restart' : 'Start'}</button><button type="button" onClick={jump} disabled={!isRunning}>Jump</button><button type="button" onPointerDown={() => setIsCrouching(true)} onPointerUp={() => setIsCrouching(false)} onPointerLeave={() => setIsCrouching(false)} disabled={!isRunning}>Crouch</button><span className="orbit-keyboard-hint">Space / tap · Shift to crouch</span><span className="orbit-touch-hint">Tap Jump · hold Crouch</span></div>
-  </aside>
+  return (
+    <aside className="orbit-runner" aria-label="Orbit Runner mini game">
+      <div className="orbit-runner-header">
+        <span>MINI BREAK · {season.name}</span>
+        <b>FOURSEASON RUNNER</b>
+        <span>SCORE {String(score).padStart(2, '0')}</span>
+      </div>
+      <div
+        className={`orbit-runner-stage ${season.className}`}
+        onClick={jump}
+        role="button"
+        tabIndex="0"
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') jump()
+        }}
+        aria-label="Jump over traps and crouch below spacecraft"
+      >
+        <div className="orbit-season-scene" />
+        <Meteors />
+        <div
+          ref={playerRef}
+          className={`orbit-character ${
+            jumpCount === 1
+              ? 'orbit-character-jumping'
+              : jumpCount === 2
+              ? 'orbit-character-jumping orbit-character-double-jumping'
+              : ''
+          } ${isCrouching ? 'orbit-character-crouching' : ''}`}
+        >
+          <i>◉</i>
+          <i>◉</i>
+        </div>
+        {obstacles.map((obstacle) => (
+          <div
+            key={obstacle.id}
+            ref={(element) => {
+              if (element) obstacleRefs.current.set(obstacle.id, element)
+              else obstacleRefs.current.delete(obstacle.id)
+            }}
+            className={`orbit-obstacle orbit-obstacle-${obstacle.type} orbit-obstacle-${obstacle.variant}`}
+            style={{ left: `${obstacle.position}%` }}
+          />
+        ))}
+        <div className="orbit-ground" />
+        <strong className="orbit-score">{String(score).padStart(2, '0')}</strong>
+        {!isRunning && (
+          <p className="orbit-message">
+            {score ? 'Signal lost — restart to try again' : 'Press start to run'}
+          </p>
+        )}
+      </div>
+      <div className="orbit-runner-controls">
+        <button type="button" onClick={restart}>
+          <Play size={13} /> {isRunning ? 'Restart' : 'Start'}
+        </button>
+        <button type="button" onClick={jump} disabled={!isRunning || jumpCount >= 2}>
+          {jumpCount === 1 ? 'Double Jump' : 'Jump'}
+        </button>
+        <button
+          type="button"
+          onPointerDown={() => setIsCrouching(true)}
+          onPointerUp={() => setIsCrouching(false)}
+          onPointerLeave={() => setIsCrouching(false)}
+          disabled={!isRunning}
+        >
+          Crouch
+        </button>
+        <span className="orbit-keyboard-hint">Space to jump (1 or 2 jumps only) · Shift to crouch</span>
+        <span className="orbit-touch-hint">Tap Jump (max 2) · hold Crouch</span>
+      </div>
+    </aside>
+  )
 }
 
 export default OrbitRunner
