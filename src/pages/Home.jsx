@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import lastCredImage from '../../LastCred.png'
 import GitHubContributions from '../components/GitHubContributions'
 import OrbitRunner from '../components/OrbitRunner'
+import RippleButton from '../components/RippleButton'
 
 const basePath = import.meta.env.BASE_URL
 
@@ -84,24 +85,24 @@ const ProjectShowcase = () => {
   }
 
   return <>
-    <div className="carousel-controls" aria-label="Project carousel controls"><span>SCROLL TO EXPLORE</span><div><button type="button" onClick={() => scrollProjects(-1)} aria-label="Previous projects"><ArrowLeft size={15} /></button><button type="button" onClick={() => scrollProjects(1)} aria-label="Next projects"><ArrowRight size={15} /></button></div></div>
+    <div className="carousel-controls" aria-label="Project carousel controls"><span>SCROLL TO EXPLORE</span><div><RippleButton type="button" onClick={() => scrollProjects(-1)} aria-label="Previous projects"><ArrowLeft size={15} /></RippleButton><RippleButton type="button" onClick={() => scrollProjects(1)} aria-label="Next projects"><ArrowRight size={15} /></RippleButton></div></div>
     <div className="work-carousel" ref={carouselRef}>
-      {projects.map((project, index) => <button ref={(element) => { projectCardRefs.current[index] = element }} className={`work-card ${index === activeIndex ? 'work-card-active' : ''}`} key={project.title} onClick={() => selectProject(index)}><span className="work-index">0{index + 1}</span><div><small>{project.tag}</small><h3>{project.title}</h3><p>{project.description}</p><em>{project.stack}</em></div><span className="work-open">View <ArrowUpRight size={14} /></span></button>)}
+      {projects.map((project, index) => <RippleButton ref={(element) => { projectCardRefs.current[index] = element }} className="work-card" key={project.title} onClick={() => selectProject(index)}><span className="work-index">0{index + 1}</span><div><small>{project.tag}</small><h3>{project.title}</h3><p>{project.description}</p><em>{project.stack}</em></div><span className="work-open">View <ArrowUpRight size={14} /></span></RippleButton>)}
     </div>
     <AnimatePresence>
       {isOpen && <motion.div className="project-viewer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-        <div className="viewer-toolbar"><span>PROJECT FILE / 0{activeIndex + 1}</span><button onClick={() => setIsOpen(false)} aria-label="Close project viewer">Close <X size={16} /></button></div>
+        <div className="viewer-toolbar"><span>PROJECT FILE / 0{activeIndex + 1}</span><RippleButton onClick={() => setIsOpen(false)} aria-label="Close project viewer">Close <X size={16} /></RippleButton></div>
         <div className="viewer-stage">
-          <button className="viewer-arrow viewer-arrow-left" onClick={() => move(-1)} aria-label="Previous project"><ArrowLeft size={20} /></button>
+          <RippleButton className="viewer-arrow viewer-arrow-left" onClick={() => move(-1)} aria-label="Previous project"><ArrowLeft size={20} /></RippleButton>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div className="viewer-content" key={activeProject.title} custom={direction} initial={{ opacity: 0, x: direction * 28 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: direction * -28 }} transition={{ duration: .28, ease: 'easeOut' }}>
               <div className="viewer-image"><img src={activeProject.image.startsWith('/') ? activeProject.image : `${basePath}${activeProject.image}`} alt={`${activeProject.title} project screenshot`} /></div>
               <div className="viewer-copy"><p className="dossier-marker">{activeProject.tag}</p><h3>{activeProject.title}</h3><p>{activeProject.detail}</p><span>{activeProject.stack}</span><div className="viewer-counter"><b>0{activeIndex + 1}</b> / 0{projects.length}</div></div>
             </motion.div>
           </AnimatePresence>
-          <button className="viewer-arrow viewer-arrow-right" onClick={() => move(1)} aria-label="Next project"><ArrowRight size={20} /></button>
+          <RippleButton className="viewer-arrow viewer-arrow-right" onClick={() => move(1)} aria-label="Next project"><ArrowRight size={20} /></RippleButton>
         </div>
-        <div className="viewer-steps">{projects.map((project, index) => <button key={project.title} onClick={() => selectViewerProject(index)} className={index === activeIndex ? 'step-active' : ''} aria-label={`View ${project.title}`} />)}</div>
+        <div className="viewer-steps">{projects.map((project, index) => <RippleButton key={project.title} onClick={() => selectViewerProject(index)} className={index === activeIndex ? 'step-active' : ''} aria-label={`View ${project.title}`} />)}</div>
       </motion.div>}
     </AnimatePresence>
   </>
@@ -115,8 +116,13 @@ const ThemeToggle = ({ onToggleTheme }) => (
 
 const Home = ({ onToggleTheme }) => {
   const [activeSkillIndex, setActiveSkillIndex] = useState(0)
+  const skillButtonRefs = useRef([])
   const activeSkill = skills[activeSkillIndex]
-  const moveSkill = (step) => setActiveSkillIndex((index) => (index + step + skills.length) % skills.length)
+  const moveSkill = (step) => {
+    const nextIndex = (activeSkillIndex + step + skills.length) % skills.length
+    setActiveSkillIndex(nextIndex)
+    skillButtonRefs.current[nextIndex]?.triggerRipple?.()
+  }
 
   return <main className="dossier">
     <header className="dossier-header">
@@ -145,7 +151,7 @@ const Home = ({ onToggleTheme }) => {
     <GitHubContributions />
 
     <section className="details-section">
-      <div id="stack" className="detail-panel stack-panel"><Marker>04 — TOOLKIT</Marker><h2>A practical<br />set of tools.</h2><div className="tool-explorer"><div><p className="tool-explorer-label">{String(activeSkillIndex + 1).padStart(2, '0')} / {String(skills.length).padStart(2, '0')}</p><h3>{activeSkill}</h3><p>{skillDetails[activeSkill]}</p></div><div className="tool-explorer-controls"><button type="button" onClick={() => moveSkill(-1)} aria-label="Previous tool"><ArrowLeft size={16} /></button><button type="button" onClick={() => moveSkill(1)} aria-label="Next tool"><ArrowRight size={16} /></button></div></div><div className="skill-cloud" aria-label="All tools">{skills.map((skill, index) => <button type="button" key={skill} className={index === activeSkillIndex ? 'skill-active' : ''} onClick={() => setActiveSkillIndex(index)} aria-pressed={index === activeSkillIndex}>{skill}</button>)}</div></div>
+      <div id="stack" className="detail-panel stack-panel"><Marker>04 — TOOLKIT</Marker><h2>A practical<br />set of tools.</h2><div className="tool-explorer"><div><p className="tool-explorer-label">{String(activeSkillIndex + 1).padStart(2, '0')} / {String(skills.length).padStart(2, '0')}</p><h3>{activeSkill}</h3><p>{skillDetails[activeSkill]}</p></div><div className="tool-explorer-controls"><RippleButton type="button" onClick={() => moveSkill(-1)} aria-label="Previous tool"><ArrowLeft size={16} /></RippleButton><RippleButton type="button" onClick={() => moveSkill(1)} aria-label="Next tool"><ArrowRight size={16} /></RippleButton></div></div><div className="skill-cloud" aria-label="All tools">{skills.map((skill, index) => <RippleButton ref={(element) => { skillButtonRefs.current[index] = element }} type="button" key={skill} className={index === activeSkillIndex ? 'skill-active' : ''} onClick={() => setActiveSkillIndex(index)} aria-pressed={index === activeSkillIndex}>{skill}</RippleButton>)}</div></div>
       <div id="credentials" className="detail-panel"><Marker>05 — CERTIFICATES</Marker><div className="certificate-list">{credentials.map(([name, issuer, file], index) => <a key={name} href={`${basePath}${file}`} target="_blank" rel="noreferrer"><b>0{index + 1}</b><span>{name}<small>{issuer}</small></span><ArrowUpRight size={15} /></a>)}</div><div className="closing-note"><p>CURRENTLY EXPLORING</p><strong>AI-enabled products, scalable mobile experiences, and better ways to turn everyday problems into useful tools.</strong></div></div>
     </section>
 

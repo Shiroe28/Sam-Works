@@ -11,13 +11,15 @@
     "preview:pages": "VITE_BASE_PATH=/Sam-Works/ vite build && vite preview --open /Sam-Works/"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "framer-motion": "^10.16.4",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.294.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.5.0",
-    "react-router-dom": "^6.30.2"
+    "react-router-dom": "^6.30.2",
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",

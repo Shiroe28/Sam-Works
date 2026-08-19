@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { ZoomIn } from 'lucide-react'
 import ImageLightbox from './ImageLightbox'
+import RippleButton from './RippleButton'
 
 const basePath = import.meta.env.BASE_URL
 
@@ -59,18 +60,18 @@ const ProjectsSection = () => {
 
       <div className="flex flex-wrap gap-3 sm:gap-4 mb-4">
         {filters.map((filter) => (
-          <button
+          <RippleButton
             key={filter}
             type="button"
             onClick={() => setActiveFilter(filter)}
-            className={`text-sm transition-colors ${
+            className={`text-sm px-3 py-1 rounded-md transition-colors ${
               activeFilter === filter
-                ? 'text-primary font-medium'
+                ? 'text-primary font-medium bg-card-hover'
                 : 'text-muted hover:text-text'
             }`}
           >
             {filter}
-          </button>
+          </RippleButton>
         ))}
       </div>
 

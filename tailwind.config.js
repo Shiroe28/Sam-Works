@@ -22,11 +22,22 @@ export default {
       },
       animation: {
         marquee: 'marquee 35s linear infinite',
+        rippling: 'rippling var(--duration, 600ms) ease-out forwards',
       },
       keyframes: {
         marquee: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
+        },
+        rippling: {
+          '0%': {
+            opacity: '0.6',
+            transform: 'scale(0)',
+          },
+          '100%': {
+            opacity: '0',
+            transform: 'scale(2)',
+          },
         },
       },
     },
