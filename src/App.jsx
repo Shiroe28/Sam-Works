@@ -36,7 +36,10 @@ const AppRoutes = ({ onToggleTheme }) => {
 }
 
 function App() {
-  const [isNightMode, setIsNightMode] = useState(() => localStorage.getItem('theme') === 'night')
+  const [isNightMode, setIsNightMode] = useState(() => {
+    const savedTheme = localStorage.getItem('theme')
+    return savedTheme !== null ? savedTheme === 'night' : true
+  })
   const toggleTheme = () => {
     const updateTheme = () => setIsNightMode((value) => !value)
     if (document.startViewTransition) {
