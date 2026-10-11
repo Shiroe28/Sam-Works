@@ -5,6 +5,13 @@ const basePath = import.meta.env.BASE_URL
 
 const achievements = [
   {
+    title: 'Discovering Entrepreneurship',
+    issuer: 'St. Dominic College of Asia · Cisco Networking Academy',
+    date: 'Oct 2026',
+    pdf: `${basePath}certificates/discovering-entrepreneurship.pdf`,
+    image: `${basePath}certificates/discovering-entrepreneurship.png`,
+  },
+  {
     title: 'Introduction to IoT and Digital Transformation',
     issuer: 'St. Dominic College of Asia · Cisco Networking Academy',
     date: 'Feb 2026',

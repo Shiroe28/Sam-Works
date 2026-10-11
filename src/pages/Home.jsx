@@ -10,6 +10,7 @@ import { featuredProjects } from '../data/projects'
 const basePath = import.meta.env.BASE_URL
 
 const credentials = [
+  ['Discovering Entrepreneurship', 'St. Dominic College of Asia · Cisco Networking Academy · 2026', 'certificates/discovering-entrepreneurship.pdf'],
   ['Introduction to IoT & Digital Transformation', 'Cisco Networking Academy · 2026', 'certificates/introduction-to-iot.pdf'],
   ['Introduction to AI Agents', 'DataCamp · 2026', 'certificates/certificate.pdf'],
   ['Introduction to GitHub Concepts', 'DataCamp · 2026', 'certificates/certificate-1.pdf'],
