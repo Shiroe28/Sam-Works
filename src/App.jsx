@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'r
 import { AnimatePresence, motion } from 'framer-motion'
 import Home from './pages/Home'
 import ContactPage from './pages/ContactPage'
+import ProjectsAllPage from './pages/ProjectsAllPage'
 
 const basename = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '') || undefined
 
@@ -26,7 +27,7 @@ const AppRoutes = ({ onToggleTheme }) => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Home onToggleTheme={onToggleTheme} /></PageTransition>} />
         <Route path="/about" element={<PageTransition><Home onToggleTheme={onToggleTheme} /></PageTransition>} />
-        <Route path="/projects" element={<PageTransition><Home onToggleTheme={onToggleTheme} /></PageTransition>} />
+        <Route path="/projects" element={<PageTransition><ProjectsAllPage onToggleTheme={onToggleTheme} /></PageTransition>} />
         <Route path="/value" element={<PageTransition><Home onToggleTheme={onToggleTheme} /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><ContactPage onToggleTheme={onToggleTheme} /></PageTransition>} />
         <Route path="*" element={<Navigate to="/" replace />} />
