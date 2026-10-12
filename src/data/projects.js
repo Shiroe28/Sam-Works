@@ -15,8 +15,9 @@ export const projects = [
   {
     slug: 'suri',
     title: 'Suri',
-    description: 'iPhone scam checker powered by on-device AI — built with my team for AppBuildersPH.',
-    badge: '🏆 Top 15 · AppBuildersPH 2026',
+    description:
+      'On-device AI iPhone scam checker — team project for AppBuildersPH 2026 (1,270 registered · 731 shipped · 281 submitted). Placed 9th overall with awards.',
+    badge: '🏆 9th Place · AppBuildersPH 2026',
     href: 'https://www.youtube.com/watch?v=cyMo31DR3WI',
     image: null,
     featured: true,
