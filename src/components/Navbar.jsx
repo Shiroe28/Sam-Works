@@ -56,6 +56,12 @@ const Navbar = () => {
               Projects
             </button>
             <button
+              onClick={() => navigate('/blog')}
+              className="text-text hover:text-primary transition-colors duration-200 font-medium"
+            >
+              Blog
+            </button>
+            <button
               onClick={() => navigate('/value')}
               className="px-6 py-2 bg-primary hover:bg-secondary rounded-full text-text transition-colors duration-200 font-medium"
             >
@@ -98,6 +104,13 @@ const Navbar = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 Projects
+              </motion.button>
+              <motion.button
+                onClick={() => handleNavigate('/blog')}
+                className="text-text hover:text-primary transition-colors duration-200 font-medium py-4 text-left text-xl border-b border-border"
+                whileTap={{ scale: 0.95 }}
+              >
+                Blog
               </motion.button>
               <motion.button
                 onClick={() => handleNavigate('/value')}

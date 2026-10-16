@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom'
 import GitHubContributions from '../components/GitHubContributions'
 import OrbitRunner from '../components/OrbitRunner'
 import RippleButton from '../components/RippleButton'
+import BlogFeed from '../components/BlogFeed'
 import ProjectListSection from '../components/ProjectListSection'
+import { featuredBlogPosts } from '../data/blog'
 import { featuredProjects } from '../data/projects'
 
 const basePath = import.meta.env.BASE_URL
@@ -95,7 +97,20 @@ const Home = ({ onToggleTheme }) => {
       <div id="credentials" className="detail-panel"><Marker>05 — CERTIFICATES</Marker><div className="certificate-list">{credentials.map(([name, issuer, file], index) => <a key={name} href={`${basePath}${file}`} target="_blank" rel="noreferrer"><b>0{index + 1}</b><span>{name}<small>{issuer}</small></span><ArrowUpRight size={15} /></a>)}</div><div className="closing-note"><p>CURRENTLY EXPLORING</p><strong>AI-enabled products, scalable mobile experiences, and better ways to turn everyday problems into useful tools.</strong></div></div>
     </section>
 
-    <section className="orbit-runner-section"><p className="dossier-marker">06 — QUICK BREAK</p><OrbitRunner /></section>
+    <section id="blog" className="work-section work-section-list blog-home-section">
+      <div className="section-banner project-section-banner">
+        <p className="dossier-marker">06 — FIELD NOTES</p>
+        <h2>
+          Random things
+          <br />
+          <span>that happen.</span>
+        </h2>
+        <p>Short posts — dev diary, small wins, and whatever&apos;s going on.</p>
+      </div>
+      <BlogFeed items={featuredBlogPosts} showViewAll viewAllTo="/blog" />
+    </section>
+
+    <section className="orbit-runner-section"><p className="dossier-marker">07 — QUICK BREAK</p><OrbitRunner /></section>
 
     <footer className="dossier-footer"><p>© {new Date().getFullYear()} Sam Richmond Go</p><Link to="/contact">Start a conversation <ArrowUpRight size={16} /></Link></footer>
   </main>
